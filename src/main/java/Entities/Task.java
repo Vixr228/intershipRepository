@@ -1,11 +1,30 @@
+package Entities;
+
+import Entities.Document;
+import Entities.Employee;
+
 import java.util.Date;
 
-public class Task extends Document{
+public class Task extends Document {
     private Date taskDate;
     private Date taskDeadline;
     private Employee taskExecutor;
     private String controlSign;
     private Employee taskController;
+
+    Task(){}
+    public Task(String name, String text, Date registrationDate, Employee author, Date taskDate, Date taskDeadline,
+                Employee taskExecutor, String controlSign, Employee taskController){
+        this.setName(name);
+        this.setText(text);
+        this.setRegistrationDate(registrationDate);
+        this.setAuthor(author);
+        this.taskDate = taskDate;
+        this.taskDeadline = taskDeadline;
+        this.taskExecutor = taskExecutor;
+        this.controlSign = controlSign;
+        this.taskController = taskController;
+    }
 
     public Date getTaskDate() {
         return taskDate;
@@ -49,6 +68,6 @@ public class Task extends Document{
 
     @Override
     public String toString() {
-        return "Поручение №" + getId() + " от " + getRegistrationDate() + ". " + getName();
+        return "Поручение №" + getRegistrationNumber() + " от " + getRegistrationDate() + ". " + getName();
     }
 }

@@ -1,3 +1,5 @@
+package Entities;
+
 import java.util.Date;
 
 public abstract class Document implements Comparable<Document>{
