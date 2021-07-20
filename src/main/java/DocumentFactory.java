@@ -3,19 +3,17 @@ import Entities.*;
 import java.util.Date;
 import java.util.List;
 
-public class DocumentFactory {
+public class DocumentFactory{
 
-    private static int documentCounter = 0;
+    private Randomizer rand;
     private List<String> texts;
     private List<Employee> employees;
-    private List<Date> dates;
     private List<String> names;
 
-    public DocumentFactory(List<String> texts, List<Employee> employees, List<Date> dates, List<String> names){
+    public DocumentFactory(List<String> texts, List<Employee> employees){
+        rand = new Randomizer();
         this.texts = texts;
         this.employees = employees;
-        this.dates = dates;
-        this.names = names;
     }
 
     public Document createDocument(DocumentType documentType){
@@ -23,22 +21,24 @@ public class DocumentFactory {
 
         switch (documentType){
             case TASK:
-                document = new Task(names.get(documentCounter), texts.get(documentCounter), new Date(),
-                        employees.get(documentCounter), dates.get(documentCounter), dates.get(documentCounter + 1),
-                        employees.get(documentCounter + 1), " ", employees.get(documentCounter + 2));
+                document = new Task("", texts.get(rand.randomNum(texts.size())), new Date(),
+                        employees.get(rand.randomNum(employees.size())), rand.randomDate(), rand.randomDate(),
+                        employees.get(rand.randomNum(employees.size())), " ", employees.get(rand.randomNum(employees.size())));
+                document.setName("Task " + document.getRegistrationNumber());
                 break;
             case INCOMING:
-                document = new Incoming(names.get(documentCounter), texts.get(documentCounter), new Date(),
-                        employees.get(documentCounter), employees.get((int) Math.random() * 5),
-                        employees.get((int)(Math.random() * 5)), " ", dates.get(documentCounter));
+                document = new Incoming("", texts.get(rand.randomNum(texts.size())), new Date(),
+                        employees.get(rand.randomNum(employees.size())), employees.get(rand.randomNum(employees.size())),
+                        employees.get(rand.randomNum(employees.size())), " ", rand.randomDate());
+                document.setName("Incoming " + document.getRegistrationNumber());
                 break;
             case OUTGOING:
-                document = new Outgoing(names.get(documentCounter), texts.get(documentCounter), new Date(),
-                        employees.get(documentCounter), employees.get((int) Math.random() * 5), " ");
+                document = new Outgoing("", texts.get(rand.randomNum(texts.size())), new Date(),
+                        employees.get(rand.randomNum(employees.size())), employees.get(rand.randomNum(employees.size())), " ");
+                document.setName("Outgoing " + document.getRegistrationNumber());
                 break;
         }
 
-        document.setRegistrationNumber(documentCounter++);
         return document;
     }
 

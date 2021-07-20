@@ -3,6 +3,7 @@ package Entities;
 import java.util.Date;
 
 public abstract class Document implements Comparable<Document>{
+    private static int documentCounter = 1;
 
     private int id;
     private String name;
@@ -11,8 +12,22 @@ public abstract class Document implements Comparable<Document>{
     private Date registrationDate;
     private Employee author;
 
-    public Document(){
+    private int prevRegistrationNumber = 0;
+
+    public Document(){}
+    public Document(String name, String text, Date registrationDate, Employee author){
+        this.name = name;
+        this.text = text;
+        this.registrationDate = registrationDate;
+        this.author = author;
         this.id = (int) Math.random() * 1000;
+        if(prevRegistrationNumber == documentCounter) try {
+            throw new DocumentExistException("file with this registration number is exist");
+        } catch (DocumentExistException e) {
+            e.printStackTrace();
+        }
+        prevRegistrationNumber = documentCounter;
+        this.registrationNumber = documentCounter++;
     }
 
     public int getId() {
@@ -68,5 +83,6 @@ public abstract class Document implements Comparable<Document>{
         if(id - secondDoc.id != 0) return id - secondDoc.id;
         return registrationDate.compareTo(secondDoc.registrationDate);
     }
+
 
 }

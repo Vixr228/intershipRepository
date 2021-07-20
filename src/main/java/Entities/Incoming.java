@@ -1,5 +1,6 @@
 package Entities;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Incoming extends Document {
@@ -11,10 +12,7 @@ public class Incoming extends Document {
 
     public Incoming(String name, String text, Date registrationDate, Employee author, Employee sender, Employee recipient,
                     String outgoingNumber, Date outgoingRegistrationDate){
-        this.setName(name);
-        this.setText(text);
-        this.setRegistrationDate(registrationDate);
-        this.setAuthor(author);
+        super(name, text, registrationDate, author);
         this.sender = sender;
         this.recipient = recipient;
         this.outgoingNumber = outgoingNumber;
@@ -56,6 +54,7 @@ public class Incoming extends Document {
 
     @Override
     public String toString() {
-        return "Входящий №" + getRegistrationNumber() + " от " + getRegistrationDate() + ". " + getName();
+        SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy");
+        return "Входящий №" + getRegistrationNumber() + " от " + format.format(getRegistrationDate()) + ". " + getName();
     }
 }

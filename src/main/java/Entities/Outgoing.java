@@ -3,6 +3,7 @@ package Entities;
 import Entities.Document;
 import Entities.Employee;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Outgoing extends Document {
@@ -11,10 +12,7 @@ public class Outgoing extends Document {
     private String deliveryMethod;
 
     public Outgoing(String name, String text, Date registrationDate, Employee author, Employee recipient, String deliveryMethod){
-        this.setName(name);
-        this.setText(text);
-        this.setRegistrationDate(registrationDate);
-        this.setAuthor(author);
+        super(name, text, registrationDate, author);
         this.recipient = recipient;
         this.deliveryMethod = deliveryMethod;
     }
@@ -38,6 +36,7 @@ public class Outgoing extends Document {
 
     @Override
     public String toString() {
-        return "Исходящий №" + getRegistrationNumber() + " от " + getRegistrationDate() + ". " + getName();
+        SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy");
+        return "Исходящий №" + getRegistrationNumber() + " от " + format.format(getRegistrationDate()) + ". " + getName();
     }
 }
