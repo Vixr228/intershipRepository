@@ -46,14 +46,15 @@ public class Main {
         DocumentFactory documentFactory = new DocumentFactory(texts, employees);
 
 
-        documents.add(documentFactory.createDocument(DocumentType.TASK));
-        documents.add(documentFactory.createDocument(DocumentType.TASK));
-        documents.add(documentFactory.createDocument(DocumentType.INCOMING));
-        documents.add(documentFactory.createDocument(DocumentType.OUTGOING));
-        documents.add(documentFactory.createDocument(DocumentType.TASK));
-        documents.add(documentFactory.createDocument(DocumentType.INCOMING));
-        documents.add(documentFactory.createDocument(DocumentType.INCOMING));
-        documents.add(documentFactory.createDocument(DocumentType.OUTGOING));
+        List<DocumentType> docTypes = new ArrayList<DocumentType>(){{
+            add(DocumentType.TASK);
+            add(DocumentType.INCOMING);
+            add(DocumentType.OUTGOING);
+        }};
+        for(int i = 0; i < 50; i++){
+            int index = (int) (Math.random() * 3);
+            documents.add(documentFactory.createDocument(docTypes.get(index)));
+        }
 
 
 
