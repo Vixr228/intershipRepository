@@ -10,9 +10,9 @@ public class Incoming extends Document {
     private String outgoingNumber;
     private Date outgoingRegistrationDate;
 
-    public Incoming(String name, String text, Date registrationDate, Employee author, Employee sender, Employee recipient,
+    public Incoming(int id, String name, String text, Date registrationDate, Employee author, Employee sender, Employee recipient,
                     String outgoingNumber, Date outgoingRegistrationDate){
-        super(name, text, registrationDate, author);
+        super(id, name, text, registrationDate, author);
         this.sender = sender;
         this.recipient = recipient;
         this.outgoingNumber = outgoingNumber;
@@ -54,6 +54,17 @@ public class Incoming extends Document {
 
     @Override
     public String toString() {
+        return "Incoming{" +
+                super.toString() +
+                "sender=" + sender +
+                ", recipient=" + recipient +
+                ", outgoingNumber='" + outgoingNumber + '\'' +
+                ", outgoingRegistrationDate=" + outgoingRegistrationDate +
+                '}';
+    }
+
+    @Override
+    public String printDocument() {
         SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy");
         return "Входящий №" + getRegistrationNumber() + " от " + format.format(getRegistrationDate()) + ". " + getName();
     }

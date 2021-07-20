@@ -11,8 +11,8 @@ public class Outgoing extends Document {
     private Employee recipient;
     private String deliveryMethod;
 
-    public Outgoing(String name, String text, Date registrationDate, Employee author, Employee recipient, String deliveryMethod){
-        super(name, text, registrationDate, author);
+    public Outgoing(int id, String name, String text, Date registrationDate, Employee author, Employee recipient, String deliveryMethod){
+        super(id, name, text, registrationDate, author);
         this.recipient = recipient;
         this.deliveryMethod = deliveryMethod;
     }
@@ -36,6 +36,15 @@ public class Outgoing extends Document {
 
     @Override
     public String toString() {
+        return "Outgoing{" +
+                super.toString() +
+                "recipient=" + recipient +
+                ", deliveryMethod='" + deliveryMethod + '\'' +
+                '}';
+    }
+
+    @Override
+    public String printDocument() {
         SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy");
         return "Исходящий №" + getRegistrationNumber() + " от " + format.format(getRegistrationDate()) + ". " + getName();
     }

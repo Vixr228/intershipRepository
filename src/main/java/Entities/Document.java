@@ -1,15 +1,15 @@
 package Entities;
-import com.sun.org.slf4j.internal.LoggerFactory;
+import Utils.DocumentExistException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.util.Date;
+import java.util.Objects;
 
 public abstract class Document implements Comparable<Document>{
     public static Logger logger;
-
-
     private static int documentCounter = 1;
+
     private int id;
     private String name;
     private String text;
@@ -20,22 +20,22 @@ public abstract class Document implements Comparable<Document>{
     private int prevRegistrationNumber = 0;
 
     public Document(){}
-    public Document(String name, String text, Date registrationDate, Employee author){
+    public Document(int id, String name, String text, Date registrationDate, Employee author){
         logger = LogManager.getRootLogger();
+        this.id = id;
         this.name = name;
         this.text = text;
-        this.registrationDate = registrationDate;
-        this.author = author;
-        this.id = (int) Math.random() * 1000;
         if(prevRegistrationNumber == documentCounter) try {
-            logger.error("Такой документ уже существует");
+            logger.error("Документ с номером " + registrationNumber + " уже существует");
             throw new DocumentExistException("file with this registration number is exist");
         } catch (DocumentExistException e) {
             e.printStackTrace();
         }
         prevRegistrationNumber = documentCounter;
         this.registrationNumber = documentCounter++;
-        logger.info("Создали новый документ");
+        this.registrationDate = registrationDate;
+        this.author = author;
+        logger.info("Создали новый документ с номером " + registrationNumber);
     }
 
     public int getId() {
@@ -92,5 +92,31 @@ public abstract class Document implements Comparable<Document>{
         return registrationDate.compareTo(secondDoc.registrationDate);
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Document document = (Document) o;
+        return id == document.id && registrationNumber == document.registrationNumber && prevRegistrationNumber == document.prevRegistrationNumber && name.equals(document.name) && text.equals(document.text) && registrationDate.equals(document.registrationDate) && author.equals(document.author);
+    }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, text, registrationNumber, registrationDate, author, prevRegistrationNumber);
+    }
+
+    @Override
+    public String toString() {
+        return "Document{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", text='" + text + '\'' +
+                ", registrationNumber=" + registrationNumber +
+                ", registrationDate=" + registrationDate +
+                ", author=" + author +
+                ", prevRegistrationNumber=" + prevRegistrationNumber +
+                '}';
+    }
+
+    public abstract String printDocument();
 }

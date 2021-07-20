@@ -1,7 +1,6 @@
-import Entities.Document;
-import Entities.DocumentExistException;
-import Entities.Employee;
-import Enums.DocumentType;
+import Entities.*;
+import Utils.DocumentExistException;
+import Utils.DocumentFactory;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -15,6 +14,8 @@ public class Main {
     public static void main(String[] args) throws DocumentExistException {
 
         logger = LogManager.getRootLogger();
+
+        //Заранее подготовленные значения для заполнения документов
         List<Employee> employees = new ArrayList<Employee>() {{
             add(new Employee("Сергей", "Сергеев", "Сергеевич"));
             add(new Employee("Петр", "Петров", "Петрович"));
@@ -41,30 +42,35 @@ public class Main {
            add("Сломать ногу");
         }};
 
-        List<Document> documents = new ArrayList<>();
-
-        DocumentFactory documentFactory = new DocumentFactory(texts, employees);
-
-
-        List<DocumentType> docTypes = new ArrayList<DocumentType>(){{
-            add(DocumentType.TASK);
-            add(DocumentType.INCOMING);
-            add(DocumentType.OUTGOING);
+        List<String> deliveryMethods = new ArrayList<String>(){{
+            add("Самолет");
+            add("Поезд");
+            add("Машина");
+            add("Корабль");
         }};
-        for(int i = 0; i < 50; i++){
+
+        //Заполняем документы
+        List<Document> documents = new ArrayList<>();
+        DocumentFactory documentFactory = new DocumentFactory(texts, employees, deliveryMethods);
+        //Лист с классами для того, чтобы выбирать случайный класс и подставлять его во входные параметры
+        List<Class<?>> classes = new ArrayList<Class<?>>(){{
+            add(Task.class);
+            add(Incoming.class);
+            add(Outgoing.class);
+        }};
+        for(int i = 0; i < 5; i++){
             int index = (int) (Math.random() * 3);
-            documents.add(documentFactory.createDocument(docTypes.get(index)));
+            documents.add(documentFactory.createDocument(classes.get(index)));
         }
 
-
-
+        //Группируем документы по авторам и выводим
         Map<Employee, List<Document>> map = documents.stream()
                 .collect(Collectors.groupingBy(Document::getAuthor));
 
         for(Map.Entry<Employee, List<Document>> item : map.entrySet()){
             System.out.println(item.getKey().toString() + ":");
             for(Document document : item.getValue()){
-                System.out.println("\t" + document.toString());
+                System.out.println("\t" + document.printDocument());
             }
             System.out.println();
         }

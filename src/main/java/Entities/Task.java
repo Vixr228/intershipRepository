@@ -14,9 +14,9 @@ public class Task extends Document {
     private Employee taskController;
 
     Task(){}
-    public Task(String name, String text, Date registrationDate, Employee author, Date taskDate, Date taskDeadline,
+    public Task(int id, String name, String text, Date registrationDate, Employee author, Date taskDate, Date taskDeadline,
                 Employee taskExecutor, String controlSign, Employee taskController){
-        super(name, text, registrationDate, author);
+        super(id, name, text, registrationDate, author);
         this.taskDate = taskDate;
         this.taskDeadline = taskDeadline;
         this.taskExecutor = taskExecutor;
@@ -66,6 +66,18 @@ public class Task extends Document {
 
     @Override
     public String toString() {
+        return  "Task{" +
+                super.toString() +
+                "taskDate=" + taskDate +
+                ", taskDeadline=" + taskDeadline +
+                ", taskExecutor=" + taskExecutor +
+                ", controlSign='" + controlSign + '\'' +
+                ", taskController=" + taskController +
+                '}';
+    }
+
+    @Override
+    public String printDocument() {
         SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy");
         return "Поручение №" + getRegistrationNumber() + " от " + format.format(getRegistrationDate()) + ". " + getName();
     }
