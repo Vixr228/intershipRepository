@@ -1,16 +1,22 @@
 import Entities.*;
+import Enums.DocumentType;
+import Utils.Randomizer;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.Date;
 import java.util.List;
 
 public class DocumentFactory{
 
+    private static Logger logger;
     private Randomizer rand;
     private List<String> texts;
     private List<Employee> employees;
     private List<String> names;
 
     public DocumentFactory(List<String> texts, List<Employee> employees){
+        logger = LogManager.getRootLogger();
         rand = new Randomizer();
         this.texts = texts;
         this.employees = employees;
@@ -39,6 +45,7 @@ public class DocumentFactory{
                 break;
         }
 
+        logger.info("Создали документ типа: " + documentType);
         return document;
     }
 

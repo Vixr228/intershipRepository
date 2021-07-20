@@ -1,6 +1,6 @@
 package Entities;
 
-public class Employee {
+public class Employee implements Comparable<Employee>{
     private String name;
     private String surname;
     private String patronymic;
@@ -38,5 +38,15 @@ public class Employee {
 
     public String getFullName(){
         return name + " " + surname + " " + patronymic;
+    }
+
+    @Override
+    public String toString() {
+        return name + " " + surname + " " + patronymic;
+    }
+
+    @Override
+    public int compareTo(Employee o) {
+        return surname.compareTo(o.surname);
     }
 }

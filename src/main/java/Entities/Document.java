@@ -1,10 +1,15 @@
 package Entities;
+import com.sun.org.slf4j.internal.LoggerFactory;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.Date;
 
 public abstract class Document implements Comparable<Document>{
-    private static int documentCounter = 1;
+    public static Logger logger;
 
+
+    private static int documentCounter = 1;
     private int id;
     private String name;
     private String text;
@@ -16,18 +21,21 @@ public abstract class Document implements Comparable<Document>{
 
     public Document(){}
     public Document(String name, String text, Date registrationDate, Employee author){
+        logger = LogManager.getRootLogger();
         this.name = name;
         this.text = text;
         this.registrationDate = registrationDate;
         this.author = author;
         this.id = (int) Math.random() * 1000;
         if(prevRegistrationNumber == documentCounter) try {
+            logger.error("Такой документ уже существует");
             throw new DocumentExistException("file with this registration number is exist");
         } catch (DocumentExistException e) {
             e.printStackTrace();
         }
         prevRegistrationNumber = documentCounter;
         this.registrationNumber = documentCounter++;
+        logger.info("Создали новый документ");
     }
 
     public int getId() {

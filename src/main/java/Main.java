@@ -1,22 +1,30 @@
 import Entities.Document;
 import Entities.DocumentExistException;
 import Entities.Employee;
+import Enums.DocumentType;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 public class Main {
+    public static Logger logger;
     public static void main(String[] args) throws DocumentExistException {
+
+        logger = LogManager.getRootLogger();
         List<Employee> employees = new ArrayList<Employee>() {{
             add(new Employee("Сергей", "Сергеев", "Сергеевич"));
             add(new Employee("Петр", "Петров", "Петрович"));
             add(new Employee("Антон", "Антонов", "Антонович"));
-            add(new Employee("Макс", "Максивов", "Максимович"));
-            add(new Employee("Андрей", "Андреев", "Андреевич"));
-            add(new Employee("Сергей", "Антонов", "Петрович"));
-            add(new Employee("Петр", "Максивом", "Андреевич"));
-            add(new Employee("Антон", "Петров", "Сергеевич"));
-            add(new Employee("Макс", "Сергеев", "Антонович"));
+            add(new Employee("Макс", "Максимов", "Максимович"));
+            add(new Employee("Андрей", "Архангелов", "Андреевич"));
+            add(new Employee("Сергей", "Бизонов", "Петрович"));
+            add(new Employee("Петр", "Потолков", "Андреевич"));
+            add(new Employee("Антон", "Ягушев", "Сергеевич"));
+            add(new Employee("Макс", "Хмыров", "Антонович"));
             add(new Employee("Андрей", "Хлебный", "Андреевич"));
         }};
 
@@ -32,19 +40,6 @@ public class Main {
            add("Вернуть телефон");
            add("Сломать ногу");
         }};
-
-//        List<String> names = new ArrayList<String>(){{
-//            add("Задача 1");
-//            add("Задача 2");
-//            add("Задача 3");
-//            add("Задача 4");
-//            add("Задача 5");
-//            add("Задача 6");
-//            add("Задача 7");
-//            add("Задача 8");
-//            add("Задача 9");
-//            add("Задача 10");
-//        }};
 
         List<Document> documents = new ArrayList<>();
 
@@ -62,9 +57,16 @@ public class Main {
 
 
 
-       documents.forEach(doc -> System.out.println(doc.toString()));
+        Map<Employee, List<Document>> map = documents.stream()
+                .collect(Collectors.groupingBy(Document::getAuthor));
 
-
+        for(Map.Entry<Employee, List<Document>> item : map.entrySet()){
+            System.out.println(item.getKey().toString() + ":");
+            for(Document document : item.getValue()){
+                System.out.println("\t" + document.toString());
+            }
+            System.out.println();
+        }
 
     }
 }
