@@ -79,6 +79,6 @@ public class Task extends Document {
     @Override
     public String printDocument() {
         SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy");
-        return "Поручение №" + getRegistrationNumber() + " от " + format.format(getRegistrationDate()) + ". " + getName();
+        return "Поручение №" + getRegistrationNumber() + " от " + format.format(getRegistrationDate()) + ". Дедлайн: " + format.format(getTaskDeadline()) + ". " + getName();
     }
 }

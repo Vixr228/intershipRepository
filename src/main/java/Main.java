@@ -10,10 +10,8 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 public class Main {
-    public static Logger logger;
+    public static Logger logger = LogManager.getRootLogger();
     public static void main(String[] args) throws DocumentExistException {
-
-        logger = LogManager.getRootLogger();
 
         //Заранее подготовленные значения для заполнения документов
         List<Employee> employees = new ArrayList<Employee>() {{
@@ -58,7 +56,7 @@ public class Main {
             add(Incoming.class);
             add(Outgoing.class);
         }};
-        for(int i = 0; i < 5; i++){
+        for(int i = 0; i < 50; i++){
             int index = (int) (Math.random() * 3);
             documents.add(documentFactory.createDocument(classes.get(index)));
         }

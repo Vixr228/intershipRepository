@@ -7,7 +7,7 @@ import java.util.Date;
 import java.util.Objects;
 
 public abstract class Document implements Comparable<Document>{
-    public static Logger logger;
+    public static Logger logger = LogManager.getRootLogger();
     private static int documentCounter = 1;
 
     private int id;
@@ -21,7 +21,6 @@ public abstract class Document implements Comparable<Document>{
 
     public Document(){}
     public Document(int id, String name, String text, Date registrationDate, Employee author){
-        logger = LogManager.getRootLogger();
         this.id = id;
         this.name = name;
         this.text = text;
