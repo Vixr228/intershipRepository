@@ -10,6 +10,7 @@ import java.util.List;
 
 public class DocumentFactory{
 
+
     private static Logger logger = LogManager.getRootLogger();
     private Randomizer  rand = new Randomizer();
     private List<String> texts;
