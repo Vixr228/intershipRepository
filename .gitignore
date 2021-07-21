@@ -9,7 +9,7 @@
 *.nar
 hs_err_pid*
 *.log
-
+*.xml
 ##############################
 ## Maven
 ##############################
@@ -41,3 +41,4 @@ out/
 ## OS X
 ##############################
 .DS_Store
+/src/main/resources/PersonList.xml

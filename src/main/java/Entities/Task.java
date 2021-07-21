@@ -1,21 +1,19 @@
 package Entities;
 
-import Entities.Document;
-import Entities.Employee;
-
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.UUID;
 
 public class Task extends Document {
     private Date taskDate;
     private Date taskDeadline;
-    private Employee taskExecutor;
+    private Person taskExecutor;
     private String controlSign;
-    private Employee taskController;
+    private Person taskController;
 
     Task(){}
-    public Task(int id, String name, String text, Date registrationDate, Employee author, Date taskDate, Date taskDeadline,
-                Employee taskExecutor, String controlSign, Employee taskController){
+    public Task(UUID id, String name, String text, Date registrationDate, Person author, Date taskDate, Date taskDeadline,
+                Person taskExecutor, String controlSign, Person taskController){
         super(id, name, text, registrationDate, author);
         this.taskDate = taskDate;
         this.taskDeadline = taskDeadline;
@@ -40,11 +38,11 @@ public class Task extends Document {
         this.taskDeadline = taskDeadline;
     }
 
-    public Employee getTaskExecutor() {
+    public Person getTaskExecutor() {
         return taskExecutor;
     }
 
-    public void setTaskExecutor(Employee taskExecutor) {
+    public void setTaskExecutor(Person taskExecutor) {
         this.taskExecutor = taskExecutor;
     }
 
@@ -56,11 +54,11 @@ public class Task extends Document {
         this.controlSign = controlSign;
     }
 
-    public Employee getTaskController() {
+    public Person getTaskController() {
         return taskController;
     }
 
-    public void setTaskController(Employee taskController) {
+    public void setTaskController(Person taskController) {
         this.taskController = taskController;
     }
 

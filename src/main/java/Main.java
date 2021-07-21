@@ -1,30 +1,36 @@
 import Entities.*;
 import Utils.DocumentExistException;
 import Utils.DocumentFactory;
+import Utils.XMLParser;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import javax.print.Doc;
+import javax.xml.bind.JAXBException;
 import java.util.*;
 import java.util.stream.Collectors;
 
 public class Main {
     public static Logger logger = LogManager.getRootLogger();
-    public static void main(String[] args) throws DocumentExistException {
+    public static void main(String[] args) throws DocumentExistException, JAXBException {
 
         //Заранее подготовленные значения для заполнения документов
-        List<Employee> employees = new ArrayList<Employee>() {{
-            add(new Employee("Сергей", "Сергеев", "Сергеевич"));
-            add(new Employee("Петр", "Петров", "Петрович"));
-            add(new Employee("Антон", "Антонов", "Антонович"));
-            add(new Employee("Макс", "Максимов", "Максимович"));
-            add(new Employee("Андрей", "Архангелов", "Андреевич"));
-            add(new Employee("Сергей", "Бизонов", "Петрович"));
-            add(new Employee("Петр", "Потолков", "Андреевич"));
-            add(new Employee("Антон", "Ягушев", "Сергеевич"));
-            add(new Employee("Макс", "Хмыров", "Антонович"));
-            add(new Employee("Андрей", "Хлебный", "Андреевич"));
-        }};
+//        List<Person> people = new ArrayList<Person>() {{
+//            add(new Person("Сергей", "Сергеев", "Сергеевич"));
+//            add(new Person("Петр", "Петров", "Петрович"));
+//            add(new Person("Антон", "Антонов", "Антонович"));
+//            add(new Person("Макс", "Максимов", "Максимович"));
+//            add(new Person("Андрей", "Архангелов", "Андреевич"));
+//            add(new Person("Сергей", "Бизонов", "Петрович"));
+//            add(new Person("Петр", "Потолков", "Андреевич"));
+//            add(new Person("Антон", "Ягушев", "Сергеевич"));
+//            add(new Person("Макс", "Хмыров", "Антонович"));
+//            add(new Person("Андрей", "Хлебный", "Андреевич"));
+//        }};
+        XMLParser xmlParser = new XMLParser();
+        PersonList personList = xmlParser.parsePerson("src/main/resources/PersonList.xml");
+
+        //personList.getPersonList().forEach(System.out::println);
 
         List<String> texts = new ArrayList<String>(){{
            add("Купить хлеб");
@@ -48,25 +54,25 @@ public class Main {
 
         //Заполняем документы
         List<Document> documents = new ArrayList<>();
-        DocumentFactory documentFactory = new DocumentFactory(texts, employees, deliveryMethods);
+        DocumentFactory documentFactory = new DocumentFactory(texts, personList.getPersonList(), deliveryMethods);
         //Лист с классами для того, чтобы выбирать случайный класс и подставлять его во входные параметры
-        List<Class<?>> classes = new ArrayList<Class<?>>(){{
+        List<Class<? extends Document>> classes = new ArrayList<Class<? extends Document>>(){{
             add(Task.class);
             add(Incoming.class);
             add(Outgoing.class);
         }};
-        for(int i = 0; i < 50; i++){
+        for(int i = 0; i < 5; i++){
             int index = (int) (Math.random() * 3);
             documents.add(documentFactory.createDocument(classes.get(index)));
         }
 
         //Группируем документы по авторам и выводим
-        Map<Employee, List<Document>> map = documents.stream().sorted(Comparator.comparing(o -> o.getAuthor().getSurname()))
+        Map<Person, List<Document>> map = documents.stream().sorted(Comparator.comparing(o -> o.getAuthor().getSurname()))
                 .collect(Collectors.groupingBy(Document::getAuthor));
-        TreeMap<Employee, List<Document>> sorted = new TreeMap<>(map);
+        TreeMap<Person, List<Document>> sorted = new TreeMap<>(map);
 
 
-        for(Map.Entry<Employee, List<Document>> item : sorted.entrySet()){
+        for(Map.Entry<Person, List<Document>> item : sorted.entrySet()){
             System.out.println(item.getKey().toString() + ":");
             for(Document document : item.getValue()){
                 System.out.println("\t" + document.printDocument());
@@ -74,5 +80,8 @@ public class Main {
             System.out.println();
         }
 
+
+        DepartmentList departmentList = xmlParser.parseDepartment("src/main/resources/DepartmentList.xml");
+        departmentList.getDepartmentList().forEach(System.out::println);
     }
 }

@@ -5,22 +5,23 @@ import org.apache.logging.log4j.Logger;
 
 import java.util.Date;
 import java.util.Objects;
+import java.util.UUID;
 
 public abstract class Document implements Comparable<Document>{
     public static Logger logger = LogManager.getRootLogger();
     private static int documentCounter = 1;
 
-    private int id;
+    private UUID id;
     private String name;
     private String text;
     private int registrationNumber;
     private Date registrationDate;
-    private Employee author;
+    private Person author;
 
     private int prevRegistrationNumber = 0;
 
     public Document(){}
-    public Document(int id, String name, String text, Date registrationDate, Employee author){
+    public Document(UUID id, String name, String text, Date registrationDate, Person author){
         this.id = id;
         this.name = name;
         this.text = text;
@@ -34,14 +35,14 @@ public abstract class Document implements Comparable<Document>{
         this.registrationNumber = documentCounter++;
         this.registrationDate = registrationDate;
         this.author = author;
-        logger.info("Создали новый документ с номером " + registrationNumber);
+        logger.info("Создали новый документ с номером " + id);
     }
 
-    public int getId() {
+    public UUID getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 
@@ -77,11 +78,11 @@ public abstract class Document implements Comparable<Document>{
         this.registrationDate = registrationDate;
     }
 
-    public Employee getAuthor() {
+    public Person getAuthor() {
         return author;
     }
 
-    public void setAuthor(Employee author) {
+    public void setAuthor(Person author) {
         this.author = author;
     }
 
