@@ -1,10 +1,15 @@
 package Utils;
 
-import Entities.*;
+import Entities.Task;
+import Entities.Outgoing;
+import Entities.Incoming;
+import Entities.Employee;
+import Entities.Document;
 import Enums.DocumentType;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import javax.print.Doc;
 import java.util.Date;
 import java.util.List;
 
@@ -24,30 +29,46 @@ public class DocumentFactory{
     }
 
     //Заполняем документы из заранее подгтовленных листов и случайных значений
-    public Document createDocument(Class<?> classDoc){
+    public Document createDocument(Class<? extends Document> classDoc){
         Document document = null;
         DocumentType documentType = DocumentType.getDocumentTypeByClassName(classDoc.getSimpleName());
         switch (documentType){
             case TASK:
-                document = new Task(rand.randomId(),"", texts.get(rand.randomNum(texts.size())), new Date(),
-                        employees.get(rand.randomNum(employees.size())), rand.randomDate(), rand.randomDate(),
-                        employees.get(rand.randomNum(employees.size())), "Оно работает", employees.get(rand.randomNum(employees.size())));
+                document = new Task(rand.randomId(),"",
+                        texts.get(rand.randomNum(texts.size())),
+                        new Date(),
+                        employees.get(rand.randomNum(employees.size())),
+                        rand.randomDate(), rand.randomDate(),
+                        employees.get(rand.randomNum(employees.size())),
+                        "Оно работает",
+                        employees.get(rand.randomNum(employees.size())));
+
                 document.setName(documentType + " " + document.getRegistrationNumber());
                 break;
             case INCOMING:
-                document = new Incoming(rand.randomId(),"", texts.get(rand.randomNum(texts.size())), new Date(),
-                        employees.get(rand.randomNum(employees.size())), employees.get(rand.randomNum(employees.size())),
-                        employees.get(rand.randomNum(employees.size())), rand.randomOutgoingNumber(), rand.randomDate());
+                document = new Incoming(rand.randomId(),"",
+                        texts.get(rand.randomNum(texts.size())), new Date(),
+                        employees.get(rand.randomNum(employees.size())),
+                        employees.get(rand.randomNum(employees.size())),
+                        employees.get(rand.randomNum(employees.size())),
+                        rand.randomOutgoingNumber(),
+                        rand.randomDate());
+
                 document.setName(documentType + " " + document.getRegistrationNumber());
                 break;
             case OUTGOING:
-                document = new Outgoing(rand.randomId(),"", texts.get(rand.randomNum(texts.size())), new Date(),
-                        employees.get(rand.randomNum(employees.size())), employees.get(rand.randomNum(employees.size())), deliveryMethods.get(rand.randomNum(deliveryMethods.size())));
+                document = new Outgoing(rand.randomId(),"",
+                        texts.get(rand.randomNum(texts.size())),
+                        new Date(),
+                        employees.get(rand.randomNum(employees.size())),
+                        employees.get(rand.randomNum(employees.size())),
+                        deliveryMethods.get(rand.randomNum(deliveryMethods.size())));
+
                 document.setName(documentType + " " + document.getRegistrationNumber());
                 break;
         }
 
-        logger.info("Создали документ типа: " + document.getClass() + " c номером " + document.getRegistrationNumber());
+        logger.info("Создали документ типа: " + document.getClass() + " c id " + document.getId());
         return document;
     }
 
