@@ -4,9 +4,8 @@ import Utils.DocumentFactory;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import javax.print.Doc;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class Main {
@@ -62,10 +61,12 @@ public class Main {
         }
 
         //Группируем документы по авторам и выводим
-        Map<Employee, List<Document>> map = documents.stream()
+        Map<Employee, List<Document>> map = documents.stream().sorted(Comparator.comparing(o -> o.getAuthor().getSurname()))
                 .collect(Collectors.groupingBy(Document::getAuthor));
+        TreeMap<Employee, List<Document>> sorted = new TreeMap<>(map);
 
-        for(Map.Entry<Employee, List<Document>> item : map.entrySet()){
+
+        for(Map.Entry<Employee, List<Document>> item : sorted.entrySet()){
             System.out.println(item.getKey().toString() + ":");
             for(Document document : item.getValue()){
                 System.out.println("\t" + document.printDocument());

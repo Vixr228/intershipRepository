@@ -87,8 +87,9 @@ public abstract class Document implements Comparable<Document>{
 
     @Override
     public int compareTo(Document secondDoc) {
-        if(id - secondDoc.id != 0) return id - secondDoc.id;
+        if(registrationNumber - secondDoc.registrationNumber != 0) return registrationNumber - secondDoc.registrationNumber;
         return registrationDate.compareTo(secondDoc.registrationDate);
+
     }
 
     @Override
