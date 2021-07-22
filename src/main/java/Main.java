@@ -16,19 +16,7 @@ public class Main {
     public static Logger logger = LogManager.getRootLogger();
     public static void main(String[] args) throws DocumentExistException, JAXBException {
 
-        //Заранее подготовленные значения для заполнения документов
-//        List<Person> people = new ArrayList<Person>() {{
-//            add(new Person("Сергей", "Сергеев", "Сергеевич"));
-//            add(new Person("Петр", "Петров", "Петрович"));
-//            add(new Person("Антон", "Антонов", "Антонович"));
-//            add(new Person("Макс", "Максимов", "Максимович"));
-//            add(new Person("Андрей", "Архангелов", "Андреевич"));
-//            add(new Person("Сергей", "Бизонов", "Петрович"));
-//            add(new Person("Петр", "Потолков", "Андреевич"));
-//            add(new Person("Антон", "Ягушев", "Сергеевич"));
-//            add(new Person("Макс", "Хмыров", "Антонович"));
-//            add(new Person("Андрей", "Хлебный", "Андреевич"));
-//        }};
+
         XMLParser xmlParser = new XMLParser();
         PersonList personList = xmlParser.parsePerson("src/main/resources/PersonList.xml");
 
@@ -91,8 +79,6 @@ public class Main {
 //        System.out.println(d.getContactList());
 
         OrganizationList organizationList = xmlParser.parseOrganization("src/main/resources/OrganizationList.xml");
-        for(int i = 0; i < organizationList.getOrganizationList().size(); i++){
-            System.out.println(organizationList.getOrganizationList().get(i).toString());
-        }
+        organizationList.getOrganizationList().forEach(System.out::println);
     }
 }
