@@ -11,12 +11,12 @@ public class Person implements Comparable<Person>, Serializable {
     private String patronymic;
     private String position;
     private Date birthDate;
-    private String phoneNumber;
+    private PhoneNumber phoneNumber;
 
 
 
     public Person(){}
-    public Person(String name, String surname, String patronymic, String position, Date birthDate, String phoneNumber){
+    public Person(String name, String surname, String patronymic, String position, Date birthDate, PhoneNumber phoneNumber){
         this.name = name;
         this.surname = surname;
         this.patronymic = patronymic;
@@ -66,11 +66,11 @@ public class Person implements Comparable<Person>, Serializable {
         this.birthDate = birthDate;
     }
 
-    public String getPhoneNumber() {
+    public PhoneNumber getPhoneNumber() {
         return phoneNumber;
     }
     @XmlElement(name = "phoneNumber")
-    public void setPhoneNumber(String phoneNumber) {
+    public void setPhoneNumber(PhoneNumber phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
     public String getFullName(){
@@ -85,7 +85,7 @@ public class Person implements Comparable<Person>, Serializable {
                 ", patronymic='" + patronymic + '\'' +
                 ", position='" + position + '\'' +
                 ", birthDate=" + birthDate +
-                ", phoneNumber='" + phoneNumber + '\'' +
+                ", phoneNumber=" + phoneNumber +
                 '}';
     }
 

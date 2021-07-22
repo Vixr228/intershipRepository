@@ -1,8 +1,7 @@
 package Utils;
 
-import Entities.Department;
-import Entities.Person;
-import Entities.PersonList;
+import ParsePackage.DepartmentList;
+import ParsePackage.PersonList;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
@@ -25,13 +24,13 @@ public class XMLParser {
     }
 
 
-    public Department parseDepartment(String path) throws JAXBException {
-            JAXBContext context = JAXBContext.newInstance(Department.class);
+    public DepartmentList parseDepartment(String path) throws JAXBException {
+            JAXBContext context = JAXBContext.newInstance(DepartmentList.class);
             Unmarshaller unmarshaller = context.createUnmarshaller();
 
-        Department Department = (Department) unmarshaller.unmarshal(new File(path));
+        DepartmentList departmentList = (DepartmentList) unmarshaller.unmarshal(new File(path));
 
-            return Department;
+            return departmentList;
         }
 
 

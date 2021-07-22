@@ -1,11 +1,12 @@
 import Entities.*;
+import ParsePackage.DepartmentList;
+import ParsePackage.PersonList;
 import Utils.DocumentExistException;
 import Utils.DocumentFactory;
 import Utils.XMLParser;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import javax.print.Doc;
 import javax.xml.bind.JAXBException;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -83,8 +84,7 @@ public class Main {
 
 //        DepartmentList departmentList = xmlParser.parseDepartment("src/main/resources/DepartmentList.xml");
 //        departmentList.getDepartmentList().forEach(System.out::println);
-        Department department = xmlParser.parseDepartment("src/main/resources/DepartmentList.xml");
-        System.out.println(department.toString());
-        System.out.println(department.getDirector().getFullName());
+        DepartmentList department = xmlParser.parseDepartment("src/main/resources/DepartmentList.xml");
+        department.getDepartmentList().forEach(System.out::println);
     }
 }

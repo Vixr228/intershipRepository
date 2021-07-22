@@ -1,4 +1,6 @@
-package Entities;
+package ParsePackage;
+
+import Entities.Person;
 
 import javax.xml.bind.annotation.*;
 import java.util.List;

@@ -1,4 +1,6 @@
-package Entities;
+package ParsePackage;
+
+import Entities.Department;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -10,7 +12,7 @@ import java.util.List;
 @XmlAccessorType(XmlAccessType.FIELD)
 public class DepartmentList {
 
-    @XmlElement(name = "department")
+    @XmlElement(name = "department", type = Department.class)
     private List<Department> departmentList = null;
 
     public List<Department> getDepartmentList() {
@@ -20,4 +22,6 @@ public class DepartmentList {
     public void setDepartmentList(List<Department> departmentList) {
         this.departmentList = departmentList;
     }
+
+
 }
