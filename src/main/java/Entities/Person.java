@@ -1,29 +1,34 @@
 package Entities;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlType;
+import javax.xml.bind.annotation.*;
+import java.io.Serializable;
+import java.util.Date;
 
-@XmlType(name = "person")
-@XmlAccessorType(XmlAccessType.FIELD)
-public class Person implements Comparable<Person>{
+@XmlRootElement(name = "person")
+public class Person implements Comparable<Person>, Serializable {
     private String name;
     private String surname;
     private String patronymic;
+    private String position;
+    private Date birthDate;
+    private String phoneNumber;
+
 
 
     public Person(){}
-    public Person(String name, String surname, String patronymic){
+    public Person(String name, String surname, String patronymic, String position, Date birthDate, String phoneNumber){
         this.name = name;
         this.surname = surname;
         this.patronymic = patronymic;
+        this.position = position;
+        this.birthDate = birthDate;
+        this.phoneNumber = phoneNumber;
     }
 
     public String getName() {
         return name;
     }
-
+    @XmlElement(name = "name")
     public void setName(String name) {
         this.name = name;
     }
@@ -31,7 +36,7 @@ public class Person implements Comparable<Person>{
     public String getSurname() {
         return surname;
     }
-
+    @XmlElement(name = "surname")
     public void setSurname(String surname) {
         this.surname = surname;
     }
@@ -39,18 +44,49 @@ public class Person implements Comparable<Person>{
     public String getPatronymic() {
         return patronymic;
     }
-
+    @XmlElement(name = "patronymic")
     public void setPatronymic(String patronymic) {
         this.patronymic = patronymic;
     }
 
+    public String getPosition() {
+        return position;
+    }
+
+    @XmlElement(name = "position")
+    public void setPosition(String position) {
+        this.position = position;
+    }
+
+    public Date getBirthDate() {
+        return birthDate;
+    }
+    @XmlElement(name = "birthDate")
+    public void setBirthDate(Date birthDate) {
+        this.birthDate = birthDate;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+    @XmlElement(name = "phoneNumber")
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
     public String getFullName(){
         return name + " " + surname + " " + patronymic;
     }
 
     @Override
     public String toString() {
-        return name + " " + surname + " " + patronymic;
+        return "Person{" +
+                "name='" + name + '\'' +
+                ", surname='" + surname + '\'' +
+                ", patronymic='" + patronymic + '\'' +
+                ", position='" + position + '\'' +
+                ", birthDate=" + birthDate +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                '}';
     }
 
     @Override

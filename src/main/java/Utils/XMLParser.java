@@ -1,6 +1,6 @@
 package Utils;
 
-import Entities.DepartmentList;
+import Entities.Department;
 import Entities.Person;
 import Entities.PersonList;
 
@@ -24,14 +24,15 @@ public class XMLParser {
         return personList;
     }
 
-    public DepartmentList parseDepartment(String path) throws JAXBException {
-        JAXBContext context = JAXBContext.newInstance(DepartmentList.class, PersonList.class);
-        Unmarshaller unmarshaller = context.createUnmarshaller();
 
-        DepartmentList departmentList = (DepartmentList) unmarshaller.unmarshal(new File(path));
+    public Department parseDepartment(String path) throws JAXBException {
+            JAXBContext context = JAXBContext.newInstance(Department.class);
+            Unmarshaller unmarshaller = context.createUnmarshaller();
 
-        return departmentList;
-    }
+        Department Department = (Department) unmarshaller.unmarshal(new File(path));
+
+            return Department;
+        }
 
 
     public String readFile(String path, Charset encoding)

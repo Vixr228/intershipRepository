@@ -30,7 +30,7 @@ public class Main {
         XMLParser xmlParser = new XMLParser();
         PersonList personList = xmlParser.parsePerson("src/main/resources/PersonList.xml");
 
-        //personList.getPersonList().forEach(System.out::println);
+        personList.getPersonList().forEach(System.out::println);
 
         List<String> texts = new ArrayList<String>(){{
            add("Купить хлеб");
@@ -73,7 +73,7 @@ public class Main {
 
 
         for(Map.Entry<Person, List<Document>> item : sorted.entrySet()){
-            System.out.println(item.getKey().toString() + ":");
+            System.out.println(item.getKey().getFullName() + ":");
             for(Document document : item.getValue()){
                 System.out.println("\t" + document.printDocument());
             }
@@ -81,7 +81,10 @@ public class Main {
         }
 
 
-        DepartmentList departmentList = xmlParser.parseDepartment("src/main/resources/DepartmentList.xml");
-        departmentList.getDepartmentList().forEach(System.out::println);
+//        DepartmentList departmentList = xmlParser.parseDepartment("src/main/resources/DepartmentList.xml");
+//        departmentList.getDepartmentList().forEach(System.out::println);
+        Department department = xmlParser.parseDepartment("src/main/resources/DepartmentList.xml");
+        System.out.println(department.toString());
+        System.out.println(department.getDirector().getFullName());
     }
 }
