@@ -1,5 +1,7 @@
 package Entities;
 
+import ParsePackage.PhoneNumbersList;
+
 import javax.xml.bind.Unmarshaller;
 import javax.xml.bind.annotation.*;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
@@ -7,11 +9,12 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
-
-public class Department extends Staff {
+@XmlRootElement(name = "department")
+public class Department extends Staff implements Serializable{
     private String fullName;
     private String shortName;
     private Person director;
+    private PhoneNumbersList contactList;
 
 
 
@@ -50,6 +53,14 @@ public class Department extends Staff {
         this.director = director;
     }
 
+    public List<PhoneNumber> getContactList(){
+        return contactList.getNumberList();
+    }
+
+    @XmlElement(name = "phoneNumberList")
+    public void setContactList(PhoneNumbersList numbersList){
+        this.contactList = numbersList;
+    }
 
 
     @Override
@@ -58,6 +69,8 @@ public class Department extends Staff {
                 "fullName='" + fullName + '\'' +
                 ", shortName='" + shortName + '\'' +
                 ", director=" + director +
+                //TODO NULL у getContactList
+               // ", contactList" + getContactList() +
                 '}';
     }
 }

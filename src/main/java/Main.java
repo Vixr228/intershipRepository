@@ -1,5 +1,6 @@
 import Entities.*;
 import ParsePackage.DepartmentList;
+import ParsePackage.OrganizationList;
 import ParsePackage.PersonList;
 import Utils.DocumentExistException;
 import Utils.DocumentFactory;
@@ -86,5 +87,12 @@ public class Main {
 //        departmentList.getDepartmentList().forEach(System.out::println);
         DepartmentList department = xmlParser.parseDepartment("src/main/resources/DepartmentList.xml");
         department.getDepartmentList().forEach(System.out::println);
+//        Department d = department.getDepartmentList().get(0);
+//        System.out.println(d.getContactList());
+
+        OrganizationList organizationList = xmlParser.parseOrganization("src/main/resources/OrganizationList.xml");
+        for(int i = 0; i < organizationList.getOrganizationList().size(); i++){
+            System.out.println(organizationList.getOrganizationList().get(i).toString());
+        }
     }
 }

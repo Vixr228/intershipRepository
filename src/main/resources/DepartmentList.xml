@@ -14,26 +14,23 @@
             </phoneNumber>
         </person>
         <phoneNumberList>
-            <phoneNumber>
-                <number>89995489634</number>
-                <number>89452563669</number>
-            </phoneNumber>
+                <number>123123123</number>
+                <number>6969969</number>
         </phoneNumberList>
     </department>
+
     <department>
-    <fullName>Яндекс</fullName>
-    <shortName>Ян</shortName>
-    <person>
-        <name>Сергей</name>
-        <surname>Антонов</surname>
-        <patronymic>ФЫв</patronymic>
-        <position>Работяга</position>
-        <birthDate>31.08.1994</birthDate>
-        <phoneNumber>89135489634</phoneNumber>
-    </person>
-    <phoneNumbers>
-        <number>89995489634</number>
-        <number>89452563669</number>
-    </phoneNumbers>
+        <fullName>Яндекс</fullName>
+        <shortName>Ян</shortName>
+        <person>
+            <name>Сергей</name>
+            <surname>Антонов</surname>
+            <patronymic>ФЫв</patronymic>
+            <position>Работяга</position>
+            <birthDate>31.08.1994</birthDate>
+            <phoneNumber>
+                <number>89135489634</number>
+            </phoneNumber>
+        </person>
     </department>
 </departmentList>

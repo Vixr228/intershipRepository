@@ -2,10 +2,11 @@ package Entities;
 
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
+import java.io.Serializable;
 import java.util.List;
 
-@XmlRootElement(name = "number")
-public class PhoneNumber {
+@XmlRootElement(name = "phoneNumber")
+public class PhoneNumber implements Serializable {
     private String number;
 
 
