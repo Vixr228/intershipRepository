@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<department>
+    <fullName>Гуглее</fullName>
+    <shortName>Гугл</shortName>
+    <director>
+        <person>
+            <name>Anton</name>
+            <surname>Антонов</surname>
+            <patronymic>Антонович</patronymic>
+            <position>Работяга</position>
+            <birthDate>31.08.1994</birthDate>
+            <phoneNumber>89135489634</phoneNumber>
+        </person>
+    </director>
+    <contactNumbers>
+           <number>89995489634</number>
+           <number>89452563669</number>
+    </contactNumbers>
+</department>
