@@ -1,10 +1,9 @@
 package Entities;
 
-import javax.xml.bind.annotation.*;
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
-@XmlRootElement(name = "person")
 public class Person implements Comparable<Person>, Serializable {
     private String name;
     private String surname;
@@ -28,7 +27,7 @@ public class Person implements Comparable<Person>, Serializable {
     public String getName() {
         return name;
     }
-    @XmlElement(name = "name")
+
     public void setName(String name) {
         this.name = name;
     }
@@ -36,7 +35,7 @@ public class Person implements Comparable<Person>, Serializable {
     public String getSurname() {
         return surname;
     }
-    @XmlElement(name = "surname")
+
     public void setSurname(String surname) {
         this.surname = surname;
     }
@@ -44,7 +43,7 @@ public class Person implements Comparable<Person>, Serializable {
     public String getPatronymic() {
         return patronymic;
     }
-    @XmlElement(name = "patronymic")
+
     public void setPatronymic(String patronymic) {
         this.patronymic = patronymic;
     }
@@ -53,7 +52,6 @@ public class Person implements Comparable<Person>, Serializable {
         return position;
     }
 
-    @XmlElement(name = "position")
     public void setPosition(String position) {
         this.position = position;
     }
@@ -61,7 +59,7 @@ public class Person implements Comparable<Person>, Serializable {
     public Date getBirthDate() {
         return birthDate;
     }
-    @XmlElement(name = "birthDate")
+
     public void setBirthDate(Date birthDate) {
         this.birthDate = birthDate;
     }
@@ -69,7 +67,6 @@ public class Person implements Comparable<Person>, Serializable {
     public PhoneNumber getPhoneNumber() {
         return phoneNumber;
     }
-    @XmlElement(name = "phoneNumber")
     public void setPhoneNumber(PhoneNumber phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
@@ -79,12 +76,13 @@ public class Person implements Comparable<Person>, Serializable {
 
     @Override
     public String toString() {
+        SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy");
         return "Person{" +
                 "name='" + name + '\'' +
                 ", surname='" + surname + '\'' +
                 ", patronymic='" + patronymic + '\'' +
                 ", position='" + position + '\'' +
-                ", birthDate=" + birthDate +
+                ", birthDate=" + format.format(getBirthDate()) +
                 ", phoneNumber=" + phoneNumber +
                 '}';
     }

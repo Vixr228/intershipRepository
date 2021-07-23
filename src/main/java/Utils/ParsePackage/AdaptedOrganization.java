@@ -1,25 +1,16 @@
-package Entities;
+package Utils.ParsePackage;
 
-import Utils.ParsePackage.PhoneNumbersList;
+import Entities.Person;
 
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement(name = "organization")
-public class Organization extends Staff{
+public class AdaptedOrganization {
     private String fullName;
     private String shortName;
     private Person director;
     private PhoneNumbersList contactList;
-
-    public Organization(){}
-    public Organization(String fullName, String shortName, Person director, PhoneNumbersList contactList){
-        this.fullName = fullName;
-        this.shortName = shortName;
-        this.director = director;
-        this.contactList = contactList;
-
-    }
 
     public String getFullName() {
         return fullName;
@@ -58,13 +49,4 @@ public class Organization extends Staff{
         this.contactList = numbersList;
     }
 
-    @Override
-    public String toString() {
-        return "Organization{" +
-                "fullName='" + fullName + '\'' +
-                ", shortName='" + shortName + '\'' +
-                ", director=" + director +
-                ", contactNumbers=" + contactList.getNumberList() +
-                '}';
-    }
 }
