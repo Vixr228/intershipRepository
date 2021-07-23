@@ -2,6 +2,7 @@ package Entities;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.UUID;
 
 public class Incoming extends Document {
 
@@ -10,7 +11,7 @@ public class Incoming extends Document {
     private String outgoingNumber;
     private Date outgoingRegistrationDate;
 
-    public Incoming(int id, String name, String text, Date registrationDate, Employee author, Employee sender, Employee recipient,
+    public Incoming(UUID id, String name, String text, Date registrationDate, Employee author, Employee sender, Employee recipient,
                     String outgoingNumber, Date outgoingRegistrationDate){
         super(id, name, text, registrationDate, author);
         this.sender = sender;

@@ -1,11 +1,18 @@
-import Entities.*;
+import Entities.Task;
+import Entities.Outgoing;
+import Entities.Incoming;
+import Entities.Employee;
+import Entities.Document;
 import Utils.DocumentExistException;
 import Utils.DocumentFactory;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import javax.print.Doc;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 import java.util.stream.Collectors;
 
 public class Main {
@@ -50,7 +57,7 @@ public class Main {
         List<Document> documents = new ArrayList<>();
         DocumentFactory documentFactory = new DocumentFactory(texts, employees, deliveryMethods);
         //Лист с классами для того, чтобы выбирать случайный класс и подставлять его во входные параметры
-        List<Class<?>> classes = new ArrayList<Class<?>>(){{
+        List<Class<? extends Document>> classes = new ArrayList<Class<? extends Document>>(){{
             add(Task.class);
             add(Incoming.class);
             add(Outgoing.class);
@@ -61,7 +68,7 @@ public class Main {
         }
 
         //Группируем документы по авторам и выводим
-        Map<Employee, List<Document>> map = documents.stream().sorted(Comparator.comparing(o -> o.getAuthor().getSurname()))
+        Map<Employee, List<Document>> map = documents.stream()
                 .collect(Collectors.groupingBy(Document::getAuthor));
         TreeMap<Employee, List<Document>> sorted = new TreeMap<>(map);
 

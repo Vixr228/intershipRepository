@@ -5,13 +5,14 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 
 //Класс для генерации рандомных значений при заполнение значений новых документов
 
 public class Randomizer {
 
-    private List<Integer> idArray = new ArrayList<>();
+    private List<UUID> idArray = new ArrayList<>();
 
     //Генерируем случайное значение в диапазоне размера листа, чтобы можно было взять случайный элемент из коллекции
     public int randomNum(int listSize){
@@ -20,7 +21,6 @@ public class Randomizer {
 
     //Генерируем случайную дату
     public Date randomDate(){
-        SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
         int day = (int) ((Math.random() * (32 - 1)) + 1);
         int month = (int) ((Math.random() * (13 - 1)) + 1);
         int year = (int) ((Math.random() * (2022 - 2000)) + 2000);
@@ -28,10 +28,10 @@ public class Randomizer {
     }
 
     //Генерируем случайный id, при это заносим их в массив для того, чтобы исключить возможнсть повторения id
-    public int randomId(){
-        int randId = (int) (Math.random() * 1000);
+    public UUID randomId(){
+        UUID randId = UUID.randomUUID();
         while(idArray.contains(randId)){
-            randId = (int) (Math.random() * 1000);
+            randId = UUID.randomUUID();
         }
         idArray.add(randId);
         return randId;

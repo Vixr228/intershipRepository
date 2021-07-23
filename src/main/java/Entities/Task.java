@@ -5,6 +5,7 @@ import Entities.Employee;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.UUID;
 
 public class Task extends Document {
     private Date taskDate;
@@ -14,7 +15,7 @@ public class Task extends Document {
     private Employee taskController;
 
     Task(){}
-    public Task(int id, String name, String text, Date registrationDate, Employee author, Date taskDate, Date taskDeadline,
+    public Task(UUID id, String name, String text, Date registrationDate, Employee author, Date taskDate, Date taskDeadline,
                 Employee taskExecutor, String controlSign, Employee taskController){
         super(id, name, text, registrationDate, author);
         this.taskDate = taskDate;

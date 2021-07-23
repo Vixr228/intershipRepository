@@ -5,13 +5,14 @@ import Entities.Employee;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.UUID;
 
 public class Outgoing extends Document {
 
     private Employee recipient;
     private String deliveryMethod;
 
-    public Outgoing(int id, String name, String text, Date registrationDate, Employee author, Employee recipient, String deliveryMethod){
+    public Outgoing(UUID id, String name, String text, Date registrationDate, Employee author, Employee recipient, String deliveryMethod){
         super(id, name, text, registrationDate, author);
         this.recipient = recipient;
         this.deliveryMethod = deliveryMethod;
