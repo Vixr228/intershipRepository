@@ -12,8 +12,8 @@ import java.util.List;
 @XmlAccessorType(XmlAccessType.FIELD)
 public class PhoneNumbersList {
 
-    @XmlElement(name = "number", type = PhoneNumber.class)
-    private List<PhoneNumber> numberList;
+    @XmlElement(name = "phoneNumber", type = PhoneNumber.class)
+    private List<PhoneNumber> numberList = null;
 
     public List<PhoneNumber> getNumberList() {
         return numberList;

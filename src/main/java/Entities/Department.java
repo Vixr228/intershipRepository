@@ -2,11 +2,8 @@ package Entities;
 
 import ParsePackage.PhoneNumbersList;
 
-import javax.xml.bind.Unmarshaller;
 import javax.xml.bind.annotation.*;
-import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import java.io.Serializable;
-import java.util.Date;
 import java.util.List;
 
 @XmlRootElement(name = "department")
@@ -53,8 +50,9 @@ public class Department extends Staff implements Serializable{
         this.director = director;
     }
 
-    public List<PhoneNumber> getContactList(){
-        return contactList.getNumberList();
+    public PhoneNumbersList getContactList(){
+        //return contactList.getNumberList();
+        return contactList;
     }
 
     @XmlElement(name = "phoneNumberList")
@@ -69,8 +67,7 @@ public class Department extends Staff implements Serializable{
                 "fullName='" + fullName + '\'' +
                 ", shortName='" + shortName + '\'' +
                 ", director=" + director +
-                //TODO NULL у getContactList
-               // ", contactList" + getContactList() +
+                ", contactList= " + getContactList().getNumberList() +
                 '}';
     }
 }

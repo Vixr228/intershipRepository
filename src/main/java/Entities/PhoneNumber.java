@@ -3,16 +3,15 @@ package Entities;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
-import java.util.List;
 
 @XmlRootElement(name = "phoneNumber")
 public class PhoneNumber implements Serializable {
     private String number;
 
-
     public String getNumber() {
         return number;
     }
+
     @XmlElement(name = "number")
     public void setNumber(String number) {
         this.number = number;

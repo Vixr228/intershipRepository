@@ -1,5 +1,7 @@
 package Entities;
 
+import ParsePackage.PhoneNumbersList;
+
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.util.List;
@@ -9,7 +11,7 @@ public class Organization extends Staff{
     private String fullName;
     private String shortName;
     private Person director;
-    private List<String> contactNumbers;
+    private PhoneNumbersList contactList;
 
     public String getFullName() {
         return fullName;
@@ -38,15 +40,15 @@ public class Organization extends Staff{
         this.director = director;
     }
 
-    public List<String> getContactNumbers() {
-        return contactNumbers;
+    public PhoneNumbersList getContactList(){
+        //return contactList.getNumberList();
+        return contactList;
     }
 
     @XmlElement(name = "phoneNumberList")
-    public void setContactNumbers(List<String> contactNumbers) {
-        this.contactNumbers = contactNumbers;
+    public void setContactList(PhoneNumbersList numbersList){
+        this.contactList = numbersList;
     }
-
 
     @Override
     public String toString() {
@@ -54,7 +56,7 @@ public class Organization extends Staff{
                 "fullName='" + fullName + '\'' +
                 ", shortName='" + shortName + '\'' +
                 ", director=" + director +
-             //   ", contactNumbers=" + contactNumbers +
+                ", contactNumbers=" + contactList.getNumberList() +
                 '}';
     }
 }

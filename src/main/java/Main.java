@@ -12,13 +12,17 @@ import javax.xml.bind.JAXBException;
 import java.util.*;
 import java.util.stream.Collectors;
 
+
 public class Main {
+    public static final String PERSONS_XML_PATH = "src/main/resources/PersonList.xml";
+    public static final String DEPARTMENTS_XML_PATH = "src/main/resources/DepartmentList.xml";
+    public static final String ORGANIZATIONS_XML_PATH = "src/main/resources/OrganizationList.xml";
     public static Logger logger = LogManager.getRootLogger();
+
     public static void main(String[] args) throws DocumentExistException, JAXBException {
 
-
         XMLParser xmlParser = new XMLParser();
-        PersonList personList = xmlParser.parsePerson("src/main/resources/PersonList.xml");
+        PersonList personList = xmlParser.parsePersons(PERSONS_XML_PATH);
 
         personList.getPersonList().forEach(System.out::println);
 
@@ -71,14 +75,11 @@ public class Main {
         }
 
 
-//        DepartmentList departmentList = xmlParser.parseDepartment("src/main/resources/DepartmentList.xml");
-//        departmentList.getDepartmentList().forEach(System.out::println);
-        DepartmentList department = xmlParser.parseDepartment("src/main/resources/DepartmentList.xml");
-        department.getDepartmentList().forEach(System.out::println);
-//        Department d = department.getDepartmentList().get(0);
-//        System.out.println(d.getContactList());
-
-        OrganizationList organizationList = xmlParser.parseOrganization("src/main/resources/OrganizationList.xml");
+        DepartmentList departmentList = xmlParser.parseDepartments(DEPARTMENTS_XML_PATH);
+        departmentList.getDepartmentList().forEach(System.out::println);
+        Department department = departmentList.getDepartmentList().get(0);
+        department.getContactList().getNumberList().forEach(System.out::println);
+        OrganizationList organizationList = xmlParser.parseOrganizations(ORGANIZATIONS_XML_PATH);
         organizationList.getOrganizationList().forEach(System.out::println);
     }
 }

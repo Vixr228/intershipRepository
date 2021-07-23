@@ -15,7 +15,7 @@ import java.nio.file.Paths;
 
 public class XMLParser {
 
-    public PersonList parsePerson(String path) throws JAXBException {
+    public PersonList parsePersons(String path) throws JAXBException {
         JAXBContext context = JAXBContext.newInstance(PersonList.class);
         Unmarshaller unmarshaller = context.createUnmarshaller();
 
@@ -25,7 +25,7 @@ public class XMLParser {
     }
 
 
-    public DepartmentList parseDepartment(String path) throws JAXBException {
+    public DepartmentList parseDepartments(String path) throws JAXBException {
             JAXBContext context = JAXBContext.newInstance(DepartmentList.class);
             Unmarshaller unmarshaller = context.createUnmarshaller();
 
@@ -34,7 +34,7 @@ public class XMLParser {
             return departmentList;
     }
 
-    public OrganizationList parseOrganization(String path) throws JAXBException {
+    public OrganizationList parseOrganizations(String path) throws JAXBException {
         JAXBContext context = JAXBContext.newInstance(OrganizationList.class);
         Unmarshaller unmarshaller = context.createUnmarshaller();
 
