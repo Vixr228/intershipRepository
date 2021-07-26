@@ -1,4 +1,10 @@
-import Entities.*;
+import Entities.Documents.Document;
+import Entities.Documents.Incoming;
+import Entities.Documents.Outgoing;
+import Entities.Documents.Task;
+import Entities.OrgStuff.Department;
+import Entities.OrgStuff.Organization;
+import Entities.OrgStuff.Person;
 import Utils.DocumentFactory;
 import Utils.JSONWriter;
 import Utils.XMLParser;
@@ -19,6 +25,9 @@ public class Main {
         XMLParser xmlParser = new XMLParser();
         JSONWriter jsonWriter = new JSONWriter();
 
+        /**
+         * Парсим XML файлы
+         */
         List<Person> personList = xmlParser.parsePersons(PERSONS_XML_PATH);
         List<Organization> organizationList = xmlParser.parseOrganizations(ORGANIZATIONS_XML_PATH);
         List<Department> departmentList = xmlParser.parseDepartments(DEPARTMENTS_XML_PATH);
@@ -50,10 +59,14 @@ public class Main {
             add("Корабль");
         }};
 
-       // Заполняем документы
+        /**
+         * Заполняем документы
+         */
         List<Document> documents = new ArrayList<>();
         DocumentFactory documentFactory = new DocumentFactory(texts, personList, deliveryMethods);
-        //Лист с классами для того, чтобы выбирать случайный класс и подставлять его во входные параметры
+        /**
+         * Лист с классами для того, чтобы выбирать случайный класс и подставлять его во входные параметры
+         */
         List<Class<? extends Document>> classes = new ArrayList<Class<? extends Document>>(){{
             add(Task.class);
             add(Incoming.class);
@@ -64,7 +77,9 @@ public class Main {
             documents.add(documentFactory.createDocument(classes.get(index)));
         }
 
-        //Пишем отчет в JSON файлы
+        /**
+         * Пишем отчет в JSON файлы
+         */
         jsonWriter.writeDocumentsToJson(documents);
 
 

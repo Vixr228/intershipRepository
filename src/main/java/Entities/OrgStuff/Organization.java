@@ -1,4 +1,4 @@
-package Entities;
+package Entities.OrgStuff;
 
 import Utils.ParsePackage.PhoneNumbersList;
 
@@ -49,7 +49,6 @@ public class Organization extends Staff{
     }
 
     public PhoneNumbersList getContactList(){
-        //return contactList.getNumberList();
         return contactList;
     }
 
@@ -58,13 +57,14 @@ public class Organization extends Staff{
         this.contactList = numbersList;
     }
 
-    @Override
-    public String toString() {
-        return "Organization{" +
+    public StringBuffer print() {
+        StringBuffer str = new StringBuffer();
+        str.append("Organization{" +
                 "fullName='" + fullName + '\'' +
                 ", shortName='" + shortName + '\'' +
                 ", director=" + director +
                 ", contactNumbers=" + contactList.getNumberList() +
-                '}';
+                '}');
+        return str;
     }
 }

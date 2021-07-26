@@ -1,4 +1,6 @@
-package Entities;
+package Entities.OrgStuff;
+
+import Entities.PhoneNumber;
 
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
@@ -74,17 +76,18 @@ public class Person implements Comparable<Person>, Serializable {
         return name + " " + surname + " " + patronymic;
     }
 
-    @Override
-    public String toString() {
+    public StringBuffer print() {
+        StringBuffer str = new StringBuffer();
         SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy");
-        return "Person{" +
+        str.append("Person{" +
                 "name='" + name + '\'' +
                 ", surname='" + surname + '\'' +
                 ", patronymic='" + patronymic + '\'' +
                 ", position='" + position + '\'' +
                 ", birthDate=" + format.format(getBirthDate()) +
                 ", phoneNumber=" + phoneNumber +
-                '}';
+                '}');
+        return str;
     }
 
     @Override

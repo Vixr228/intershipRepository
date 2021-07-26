@@ -1,10 +1,10 @@
 package Utils;
 
-import Entities.Task;
-import Entities.Outgoing;
-import Entities.Incoming;
-import Entities.Person;
-import Entities.Document;
+import Entities.Documents.Task;
+import Entities.Documents.Outgoing;
+import Entities.Documents.Incoming;
+import Entities.OrgStuff.Person;
+import Entities.Documents.Document;
 import Enums.DocumentType;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -20,6 +20,12 @@ public class DocumentFactory{
     private List<Person> people;
     private List<String> deliveryMethods;
 
+    /**
+     * Конструктор фабрики, куда передаются заранее подготовленные листы с данными из которых потом формируются документы
+     * @param texts - массив для поля текст
+     * @param people - массив работников (авторы, исполнители...)
+     * @param deliveryMethods - массив с методами доставок
+     */
     public DocumentFactory(List<String> texts, List<Person> people, List<String> deliveryMethods){
         this.texts = texts;
         this.people = people;
@@ -27,6 +33,12 @@ public class DocumentFactory{
     }
 
     //Заполняем документы из заранее подгтовленных листов и случайных значений
+
+    /**
+     * createDocument - метод создания новых документов. Данные у документов заполняються случайным образом из заранее подготовленных листов переденных в конструктор.
+     * @param classDoc - класс документа, которые хотим создать
+     * @return Document
+     */
     public Document createDocument(Class<?  extends Document> classDoc){
         Document document = null;
         DocumentType documentType = DocumentType.getDocumentTypeByClassName(classDoc.getSimpleName());

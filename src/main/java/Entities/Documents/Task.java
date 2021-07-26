@@ -1,4 +1,6 @@
-package Entities;
+package Entities.Documents;
+
+import Entities.OrgStuff.Person;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -62,16 +64,17 @@ public class Task extends Document {
         this.taskController = taskController;
     }
 
-    @Override
-    public String toString() {
-        return  "Task{" +
+    public StringBuffer print() {
+        StringBuffer str = new StringBuffer();
+        str.append("Task{" +
                 super.toString() +
                 "taskDate=" + taskDate +
                 ", taskDeadline=" + taskDeadline +
                 ", taskExecutor=" + taskExecutor +
                 ", controlSign='" + controlSign + '\'' +
                 ", taskController=" + taskController +
-                '}';
+                '}');
+        return str;
     }
 
     @Override

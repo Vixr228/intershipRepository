@@ -6,6 +6,10 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.util.List;
 
+/**
+ * Класс DepartmentList используется для парсинга массива данных Department из XML источника.
+ */
+
 @XmlRootElement(name = "departmentList")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class DepartmentList {

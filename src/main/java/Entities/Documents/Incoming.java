@@ -1,4 +1,6 @@
-package Entities;
+package Entities.Documents;
+
+import Entities.OrgStuff.Person;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -53,15 +55,16 @@ public class Incoming extends Document {
     }
 
 
-    @Override
-    public String toString() {
-        return "Incoming{" +
+    public StringBuffer print() {
+        StringBuffer str = new StringBuffer();
+        str.append("Incoming{" +
                 super.toString() +
                 "sender=" + sender +
                 ", recipient=" + recipient +
                 ", outgoingNumber='" + outgoingNumber + '\'' +
                 ", outgoingRegistrationDate=" + outgoingRegistrationDate +
-                '}';
+                '}');
+        return str;
     }
 
     @Override

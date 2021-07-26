@@ -1,10 +1,9 @@
 package Utils;
 
-import Entities.Document;
-import Entities.Person;
+import Entities.Documents.Document;
+import Entities.OrgStuff.Person;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.google.gson.JsonObject;
 
 import java.io.FileWriter;
 import java.io.IOException;
@@ -14,6 +13,10 @@ import java.util.Map;
 import java.util.TreeMap;
 import java.util.stream.Collectors;
 
+/**
+ * Класс JSONWriter - нужен для записи созданных документов в json файл.
+ * Документы группируются по полю Автора и отсортированы по регистрационному номеру (авторы отсортированы по алфавиту).
+ */
 public class JSONWriter {
     Gson gson = new GsonBuilder().setPrettyPrinting().create();
 

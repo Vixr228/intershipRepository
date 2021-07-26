@@ -1,6 +1,6 @@
 package DataBase;
 
-import Entities.Document;
+import Entities.Documents.Document;
 
 public interface Storable {
 

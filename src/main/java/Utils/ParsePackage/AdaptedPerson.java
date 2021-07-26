@@ -8,6 +8,11 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import java.util.Date;
+
+/**
+ * Класс AdaptedPerson - заменяет сущность Person при парсинге в XML. Для того, чтобы не нагружать модель сущности Person.
+ */
+
 @XmlRootElement(name = "person")
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlJavaTypeAdapter(PersonAdapter.class)
@@ -67,16 +72,4 @@ public class AdaptedPerson {
         this.phoneNumber = phoneNumber;
     }
 
-
-    @Override
-    public String toString() {
-        return "PersonAdapter{" +
-                "name='" + name + '\'' +
-                ", surname='" + surname + '\'' +
-                ", patronymic='" + patronymic + '\'' +
-                ", position='" + position + '\'' +
-                ", birthDate=" + birthDate +
-                ", phoneNumber=" + phoneNumber +
-                '}';
-    }
 }

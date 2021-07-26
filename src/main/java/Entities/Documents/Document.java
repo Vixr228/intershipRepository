@@ -1,4 +1,5 @@
-package Entities;
+package Entities.Documents;
+import Entities.OrgStuff.Person;
 import Utils.DocumentExistException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -21,6 +22,15 @@ public abstract class Document implements Comparable<Document>{
     private int prevRegistrationNumber = 0;
 
     public Document(){}
+    /**
+     * Конструктор - создание нового документа с заданными параметрами. С проверкой на уже существующий регистрационный номер.
+     * @param id - id документа
+     * @param name - Название документа
+     * @param text - текстовое описание
+     * @param registrationDate - дата создания
+     * @param author - автор документа
+     *
+     */
     public Document(UUID id, String name, String text, Date registrationDate, Person author){
         this.id = id;
         this.name = name;
@@ -106,9 +116,9 @@ public abstract class Document implements Comparable<Document>{
         return Objects.hash(id, name, text, registrationNumber, registrationDate, author, prevRegistrationNumber);
     }
 
-    @Override
-    public String toString() {
-        return "Document{" +
+    public StringBuffer print() {
+        StringBuffer str = new StringBuffer();
+         str.append("Document{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", text='" + text + '\'' +
@@ -116,7 +126,8 @@ public abstract class Document implements Comparable<Document>{
                 ", registrationDate=" + registrationDate +
                 ", author=" + author +
                 ", prevRegistrationNumber=" + prevRegistrationNumber +
-                '}';
+                '}');
+         return str;
     }
 
     public abstract String printDocument();

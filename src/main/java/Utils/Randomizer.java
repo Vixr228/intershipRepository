@@ -6,18 +6,27 @@ import java.util.List;
 import java.util.UUID;
 
 
-//Класс для генерации рандомных значений при заполнение значений новых документов
 
+/**
+ * Класс для генерации рандомных значений при заполнение значений новых документов
+ */
 public class Randomizer {
 
     private List<UUID> idArray = new ArrayList<>();
 
-    //Генерируем случайное значение в диапазоне размера листа, чтобы можно было взять случайный элемент из коллекции
+    /**
+     *  Генерируем случайное значение в диапазоне размера листа, чтобы можно было взять случайный элемент из коллекции
+     * @param listSize - размер массива
+     * @return - случайных индекс существующего массива
+     */
     public int randomNum(int listSize){
         return (int) (Math.random() * listSize);
     }
 
-    //Генерируем случайную дату
+    /**
+     * Генерируем случайную дату
+     */
+
     public Date randomDate(){
         int day = (int) ((Math.random() * (32 - 1)) + 1);
         int month = (int) ((Math.random() * (13 - 1)) + 1);
@@ -25,7 +34,9 @@ public class Randomizer {
         return new Date(year - 1900, month, day);
     }
 
-    //Генерируем случайный id, при это заносим их в массив для того, чтобы исключить возможнсть повторения id
+    /**
+     *    Генерируем случайный id, при это заносим их в массив для того, чтобы исключить возможнсть повторения id
+     */
     public UUID randomId(){
         UUID randId = UUID.randomUUID();
         while(idArray.contains(randId)){
@@ -35,7 +46,9 @@ public class Randomizer {
         return randId;
     }
 
-    //Генерируем номер телефона
+    /**
+     * Генерируем номер телефона
+     */
     public String randomOutgoingNumber(){
         String number = "";
         for(int i = 0; i < 10; i++){

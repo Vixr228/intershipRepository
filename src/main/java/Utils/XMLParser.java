@@ -1,14 +1,16 @@
 package Utils;
 
-import Entities.Department;
-import Entities.Organization;
-import Entities.Person;
+import Entities.OrgStuff.Department;
+import Entities.OrgStuff.Organization;
+import Entities.OrgStuff.Person;
 import Utils.ParsePackage.Adapters.DepartmentAdapter;
 import Utils.ParsePackage.Adapters.OrganizationAdapter;
 import Utils.ParsePackage.Adapters.PersonAdapter;
 import Utils.ParsePackage.DepartmentList;
 import Utils.ParsePackage.OrganizationList;
 import Utils.ParsePackage.PersonList;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
@@ -21,8 +23,15 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Класс XMLParser занимается парсингом данных из XML файлов при помощи библиотеки JAXB.
+ * Есть три функции, parsePersons - для парсинга людей.
+ * parseDepartments - парсинг департаментов.
+ * parseOrganization - парсинг организаций.
+ * На вход функциям подается путь до XML файла. На выходе получается ArrayList данных.
+ */
 public class XMLParser {
-
+    public static Logger logger = LogManager.getRootLogger();
     public List<Person> parsePersons(String path) throws Exception {
         List<Person> persons = new ArrayList<>();
         JAXBContext context = JAXBContext.newInstance(PersonList.class);
@@ -34,6 +43,7 @@ public class XMLParser {
             try {
                 persons.add(personAdapter.unmarshal(p));
             } catch (Exception e) {
+                logger.error("При парсинге человека возникла ошибка.");
                 e.printStackTrace();
             }
         });
@@ -51,6 +61,7 @@ public class XMLParser {
             try {
                 departments.add(departmentAdapter.unmarshal(d));
             } catch (Exception e) {
+                logger.error("При парсинге департамента возникла ошибка.");
                 e.printStackTrace();
             }
         });
@@ -69,6 +80,7 @@ public class XMLParser {
             try {
                 organizations.add(organizationAdapter.unmarshal(o));
             } catch (Exception e) {
+                logger.error("При парсинге организации возникла ошибка.");
                 e.printStackTrace();
             }
         });

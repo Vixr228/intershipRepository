@@ -1,12 +1,15 @@
 package Utils.ParsePackage;
 
-import Entities.Person;
+import Entities.OrgStuff.Person;
 import Utils.ParsePackage.Adapters.DepartmentAdapter;
 
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
+/**
+ * Класс AdapterDepartment - заменяет сущность Department при парсинге в XML. Для того, чтобы не нагружать модель сущности Department.
+ */
 @XmlRootElement(name = "department")
 @XmlJavaTypeAdapter(DepartmentAdapter.class)
 public class AdaptedDepartment {

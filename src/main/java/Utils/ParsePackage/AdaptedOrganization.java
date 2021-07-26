@@ -1,10 +1,13 @@
 package Utils.ParsePackage;
 
-import Entities.Person;
+import Entities.OrgStuff.Person;
 
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
+/**
+ * Класс AdaptedOrganization - заменяет сущность Organization при парсинге в XML. Для того, чтобы не нагружать модель сущности Organization.
+ */
 @XmlRootElement(name = "organization")
 public class AdaptedOrganization {
     private String fullName;

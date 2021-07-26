@@ -3,6 +3,10 @@ package Utils.ParsePackage;
 import javax.xml.bind.annotation.*;
 import java.util.List;
 
+/**
+ * Класс PersonList используется для парсинга массива данных Person из XML источника.
+ */
+
 @XmlRootElement(name = "personList")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class PersonList {

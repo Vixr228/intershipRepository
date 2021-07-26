@@ -8,6 +8,11 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.util.List;
 
+/**
+ * Класс PhoneNumbersList используется для парсинга массива данных PhoneNumber из XML источника.
+ */
+
+
 @XmlRootElement(name = "phoneNumberList")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class PhoneNumbersList {

@@ -1,10 +1,9 @@
-package Entities;
+package Entities.OrgStuff;
 
 import Utils.ParsePackage.PhoneNumbersList;
 
 import java.io.Serializable;
 
-//@XmlRootElement(name = "department")
 public class Department extends Staff implements Serializable{
     private String fullName;
     private String shortName;
@@ -26,7 +25,6 @@ public class Department extends Staff implements Serializable{
         return fullName;
     }
 
-    //@XmlElement(name = "fullName")
     public void setFullName(String fullName) {
         this.fullName = fullName;
     }
@@ -35,7 +33,6 @@ public class Department extends Staff implements Serializable{
         return shortName;
     }
 
-    //@XmlElement(name = "shortName")
     public void setShortName(String shortName) {
         this.shortName = shortName;
     }
@@ -44,7 +41,6 @@ public class Department extends Staff implements Serializable{
         return director;
     }
 
-    //@XmlElement(name = "person")
     public void setDirector(Person director) {
         this.director = director;
     }
@@ -54,19 +50,19 @@ public class Department extends Staff implements Serializable{
         return contactList;
     }
 
-    //@XmlElement(name = "phoneNumberList")
     public void setContactList(PhoneNumbersList numbersList){
         this.contactList = numbersList;
     }
 
 
-    @Override
-    public String toString() {
-        return "Department{" +
+    public StringBuffer print() {
+        StringBuffer str = new StringBuffer();
+        str.append("Department{" +
                 "fullName='" + fullName + '\'' +
                 ", shortName='" + shortName + '\'' +
                 ", director=" + director +
                 ", contactList= " + getContactList().getNumberList() +
-                '}';
+                '}');
+        return str;
     }
 }
