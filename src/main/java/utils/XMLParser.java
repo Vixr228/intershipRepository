@@ -1,14 +1,14 @@
-package Utils;
+package utils;
 
-import Entities.OrgStuff.Department;
-import Entities.OrgStuff.Organization;
-import Entities.OrgStuff.Person;
-import Utils.ParsePackage.Adapters.DepartmentAdapter;
-import Utils.ParsePackage.Adapters.OrganizationAdapter;
-import Utils.ParsePackage.Adapters.PersonAdapter;
-import Utils.ParsePackage.DepartmentList;
-import Utils.ParsePackage.OrganizationList;
-import Utils.ParsePackage.PersonList;
+import entities.orgstuff.Department;
+import entities.orgstuff.Organization;
+import entities.orgstuff.Person;
+import utils.parseutils.adapters.DepartmentAdapter;
+import utils.parseutils.adapters.OrganizationAdapter;
+import utils.parseutils.adapters.PersonAdapter;
+import utils.parseutils.DepartmentList;
+import utils.parseutils.OrganizationList;
+import utils.parseutils.PersonList;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -38,17 +38,9 @@ public class XMLParser {
         Unmarshaller unmarshaller = context.createUnmarshaller();
         PersonList personList = (PersonList) unmarshaller.unmarshal(new File(path));
 
-        PersonAdapter personAdapter = new PersonAdapter();
-        personList.getPersonList().forEach(p -> {
-            try {
-                persons.add(personAdapter.unmarshal(p));
-            } catch (Exception e) {
-                logger.error("При парсинге человека возникла ошибка.");
-                e.printStackTrace();
-            }
-        });
+        PersonAdapter personAdapter = new PersonAdapter(personList);
 
-        return persons;
+        return personAdapter.adaptedPersonsToPersons();
     }
     public List<Department> parseDepartments(String path) throws JAXBException {
         List<Department> departments = new ArrayList<>();
@@ -56,17 +48,8 @@ public class XMLParser {
         Unmarshaller unmarshaller = context.createUnmarshaller();
         DepartmentList departmentList = (DepartmentList) unmarshaller.unmarshal(new File(path));
 
-        DepartmentAdapter departmentAdapter = new DepartmentAdapter();
-        departmentList.getDepartmentList().forEach(d -> {
-            try {
-                departments.add(departmentAdapter.unmarshal(d));
-            } catch (Exception e) {
-                logger.error("При парсинге департамента возникла ошибка.");
-                e.printStackTrace();
-            }
-        });
-
-        return departments;
+        DepartmentAdapter departmentAdapter = new DepartmentAdapter(departmentList);
+        return departmentAdapter.adaptedDepartmentsToDepartments();
     }
 
     public List<Organization> parseOrganizations(String path) throws JAXBException {
@@ -75,17 +58,9 @@ public class XMLParser {
         Unmarshaller unmarshaller = context.createUnmarshaller();
         OrganizationList organizationList = (OrganizationList) unmarshaller.unmarshal(new File(path));
 
-        OrganizationAdapter organizationAdapter = new OrganizationAdapter();
-        organizationList.getOrganizationList().forEach(o -> {
-            try {
-                organizations.add(organizationAdapter.unmarshal(o));
-            } catch (Exception e) {
-                logger.error("При парсинге организации возникла ошибка.");
-                e.printStackTrace();
-            }
-        });
+        OrganizationAdapter organizationAdapter = new OrganizationAdapter(organizationList);
 
-        return organizations;
+        return organizationAdapter.adaptedOrganizationsToOrganizations();
     }
 
 

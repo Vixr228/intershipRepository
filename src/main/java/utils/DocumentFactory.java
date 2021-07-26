@@ -1,11 +1,11 @@
-package Utils;
+package utils;
 
-import Entities.Documents.Task;
-import Entities.Documents.Outgoing;
-import Entities.Documents.Incoming;
-import Entities.OrgStuff.Person;
-import Entities.Documents.Document;
-import Enums.DocumentType;
+import entities.documents.Task;
+import entities.documents.Outgoing;
+import entities.documents.Incoming;
+import entities.orgstuff.Person;
+import entities.documents.Document;
+import enums.DocumentType;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

@@ -1,4 +1,6 @@
-package Utils.ParsePackage;
+package utils.parseutils;
+
+import utils.parseutils.adapters.PersonAdapter;
 
 import javax.xml.bind.annotation.*;
 import java.util.List;
@@ -12,14 +14,14 @@ import java.util.List;
 public class PersonList {
 
 
-    @XmlElement(name = "person", type = AdaptedPerson.class)
-    private List<AdaptedPerson> personList = null;
+    @XmlElement(name = "person", type = PersonAdapter.AdaptedPerson.class)
+    private List<PersonAdapter.AdaptedPerson> personList = null;
 
-    public List<AdaptedPerson> getPersonList() {
+    public List<PersonAdapter.AdaptedPerson> getPersonList() {
         return personList;
     }
 
-    public void setPersonList(List<AdaptedPerson> personList) {
+    public void setPersonList(List<PersonAdapter.AdaptedPerson> personList) {
         this.personList = personList;
     }
 

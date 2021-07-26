@@ -1,10 +1,14 @@
-package Entities.OrgStuff;
+package entities.orgstuff;
 
-import Utils.ParsePackage.PhoneNumbersList;
+import utils.parseutils.PhoneNumbersList;
 
 import java.io.Serializable;
+import java.util.UUID;
 
 public class Department extends Staff implements Serializable{
+    private UUID id;
+
+
     private String fullName;
     private String shortName;
     private Person director;
@@ -14,6 +18,7 @@ public class Department extends Staff implements Serializable{
 
     public Department(){}
     public Department(String fullName, String shortName, Person director, PhoneNumbersList contactList){
+        this.id = UUID.randomUUID();
         this.fullName = fullName;
         this.shortName = shortName;
         this.director = director;
@@ -21,6 +26,16 @@ public class Department extends Staff implements Serializable{
 
     }
 
+
+    @Override
+    public UUID getId() {
+        return id;
+    }
+
+    @Override
+    public void setId(UUID id) {
+        this.id = id;
+    }
     public String getFullName() {
         return fullName;
     }

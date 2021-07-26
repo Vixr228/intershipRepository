@@ -1,4 +1,4 @@
-package Entities.OrgStuff;
+package entities.orgstuff;
 
 import java.util.UUID;
 

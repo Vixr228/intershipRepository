@@ -1,7 +1,7 @@
-package Utils;
+package utils;
 
-import Entities.Documents.Document;
-import Entities.OrgStuff.Person;
+import entities.documents.Document;
+import entities.orgstuff.Person;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 

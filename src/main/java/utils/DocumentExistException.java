@@ -1,4 +1,4 @@
-package Utils;
+package utils;
 
 /**
  * Exception - ошибка, такой документ уже существует

@@ -1,6 +1,6 @@
-package Utils.ParsePackage;
+package utils.parseutils;
 
-import Entities.PhoneNumber;
+import entities.PhoneNumber;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;

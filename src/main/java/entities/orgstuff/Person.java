@@ -1,12 +1,16 @@
-package Entities.OrgStuff;
+package entities.orgstuff;
 
-import Entities.PhoneNumber;
+import entities.PhoneNumber;
 
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.UUID;
 
-public class Person implements Comparable<Person>, Serializable {
+public class Person extends Staff implements Comparable<Person>, Serializable {
+
+
+    private transient UUID id;
     private String name;
     private String surname;
     private String patronymic;
@@ -18,12 +22,23 @@ public class Person implements Comparable<Person>, Serializable {
 
     public Person(){}
     public Person(String name, String surname, String patronymic, String position, Date birthDate, PhoneNumber phoneNumber){
+        this.id = UUID.randomUUID();
         this.name = name;
         this.surname = surname;
         this.patronymic = patronymic;
         this.position = position;
         this.birthDate = birthDate;
         this.phoneNumber = phoneNumber;
+    }
+
+    @Override
+    public UUID getId() {
+        return id;
+    }
+
+    @Override
+    public void setId(UUID id) {
+        this.id = id;
     }
 
     public String getName() {

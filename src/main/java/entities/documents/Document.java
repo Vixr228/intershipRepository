@@ -1,6 +1,6 @@
-package Entities.Documents;
-import Entities.OrgStuff.Person;
-import Utils.DocumentExistException;
+package entities.documents;
+import entities.orgstuff.Person;
+import utils.DocumentExistException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

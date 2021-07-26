@@ -1,4 +1,6 @@
-package Utils.ParsePackage;
+package utils.parseutils;
+
+import utils.parseutils.adapters.OrganizationAdapter;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -14,14 +16,14 @@ import java.util.List;
 @XmlAccessorType(XmlAccessType.FIELD)
 public class OrganizationList {
 
-    @XmlElement(name = "organization", type = AdaptedOrganization.class)
-    private List<AdaptedOrganization> organizationList = null;
+    @XmlElement(name = "organization", type = OrganizationAdapter.AdaptedOrganization.class)
+    private List<OrganizationAdapter.AdaptedOrganization> organizationList = null;
 
-    public List<AdaptedOrganization> getOrganizationList() {
+    public List<OrganizationAdapter.AdaptedOrganization> getOrganizationList() {
         return organizationList;
     }
 
-    public void setOrganizationList(List<AdaptedOrganization> organizationList) {
+    public void setOrganizationList(List<OrganizationAdapter.AdaptedOrganization> organizationList) {
         this.organizationList = organizationList;
     }
 }

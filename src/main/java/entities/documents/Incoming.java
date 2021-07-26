@@ -1,6 +1,6 @@
-package Entities.Documents;
+package entities.documents;
 
-import Entities.OrgStuff.Person;
+import entities.orgstuff.Person;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;

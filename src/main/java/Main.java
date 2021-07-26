@@ -1,13 +1,13 @@
-import Entities.Documents.Document;
-import Entities.Documents.Incoming;
-import Entities.Documents.Outgoing;
-import Entities.Documents.Task;
-import Entities.OrgStuff.Department;
-import Entities.OrgStuff.Organization;
-import Entities.OrgStuff.Person;
-import Utils.DocumentFactory;
-import Utils.JSONWriter;
-import Utils.XMLParser;
+import entities.documents.Document;
+import entities.documents.Incoming;
+import entities.documents.Outgoing;
+import entities.documents.Task;
+import entities.orgstuff.Department;
+import entities.orgstuff.Organization;
+import entities.orgstuff.Person;
+import utils.DocumentFactory;
+import utils.JSONWriter;
+import utils.XMLParser;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -32,11 +32,15 @@ public class Main {
         List<Organization> organizationList = xmlParser.parseOrganizations(ORGANIZATIONS_XML_PATH);
         List<Department> departmentList = xmlParser.parseDepartments(DEPARTMENTS_XML_PATH);
 
+        personList.forEach(person -> {
+            logger.info(person.print());
+        });
+
         organizationList.forEach(organization -> {
-            logger.info(organization.toString());
+            logger.info(organization.print());
         });
         departmentList.forEach(department -> {
-            logger.info(department.toString());
+            logger.info(department.print());
         });
 
         List<String> texts = new ArrayList<String>(){{
