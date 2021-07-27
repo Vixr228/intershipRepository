@@ -24,7 +24,7 @@ public class DocumentFactory{
      * Конструктор фабрики, куда передаются заранее подготовленные листы с данными из которых потом формируются документы
      * @param texts - массив для поля текст
      * @param people - массив работников (авторы, исполнители...)
-     * @param deliveryMethods - массив с методами доставок
+     * @param deliveryMethods - массив с методами доставок (Самолет, поезд, машина, корабль)
      */
     public DocumentFactory(List<String> texts, List<Person> people, List<String> deliveryMethods){
         this.texts = texts;
