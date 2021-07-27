@@ -1,6 +1,6 @@
-package utils.parseutils;
+package utils.parse_utils;
 
-import utils.parseutils.adapters.PersonAdapter;
+import utils.parse_utils.adapters.PersonAdapter;
 
 import javax.xml.bind.annotation.*;
 import java.util.List;

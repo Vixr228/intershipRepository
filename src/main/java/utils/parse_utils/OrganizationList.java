@@ -1,6 +1,6 @@
-package utils.parseutils;
+package utils.parse_utils;
 
-import utils.parseutils.adapters.OrganizationAdapter;
+import utils.parse_utils.adapters.OrganizationAdapter;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;

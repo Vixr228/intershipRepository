@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.junit.Assert;
+import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import javax.print.Doc;
@@ -61,4 +62,7 @@ class DocumentFactoryTest {
         assertNotEquals(incoming.getClass(), outgoing.getClass());
     }
 
+//    Task createDocument(){
+//        Mockito.when(documentFactory.createDocument(Mockito.any())).thenReturn(new Task());
+//    }
 }

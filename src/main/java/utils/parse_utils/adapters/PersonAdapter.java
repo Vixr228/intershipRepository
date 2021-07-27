@@ -1,8 +1,8 @@
-package utils.parseutils.adapters;
+package utils.parse_utils.adapters;
 
 import entities.orgstuff.Person;
 import entities.PhoneNumber;
-import utils.parseutils.PersonList;
+import utils.parse_utils.PersonList;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -14,7 +14,6 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.UUID;
 
 /**
  * PersonAdapter нужен для преобразования AdaptedPerson в Person.

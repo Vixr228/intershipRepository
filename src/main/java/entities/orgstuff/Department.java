@@ -1,14 +1,12 @@
 package entities.orgstuff;
 
-import utils.parseutils.PhoneNumbersList;
+import utils.parse_utils.PhoneNumbersList;
 
 import java.io.Serializable;
 import java.util.Objects;
 import java.util.UUID;
 
 public class Department extends Staff implements Serializable{
-    private UUID id;
-
 
     private String fullName;
     private String shortName;
@@ -25,12 +23,12 @@ public class Department extends Staff implements Serializable{
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, fullName, shortName, director, contactList);
+        return Objects.hash(getId(), fullName, shortName, director, contactList);
     }
 
     public Department(){}
     public Department(String fullName, String shortName, Person director, PhoneNumbersList contactList){
-        this.id = UUID.randomUUID();
+        super();
         this.fullName = fullName;
         this.shortName = shortName;
         this.director = director;
@@ -39,15 +37,6 @@ public class Department extends Staff implements Serializable{
     }
 
 
-    @Override
-    public UUID getId() {
-        return id;
-    }
-
-    @Override
-    public void setId(UUID id) {
-        this.id = id;
-    }
     public String getFullName() {
         return fullName;
     }

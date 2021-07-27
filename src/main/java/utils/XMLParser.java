@@ -3,12 +3,12 @@ package utils;
 import entities.orgstuff.Department;
 import entities.orgstuff.Organization;
 import entities.orgstuff.Person;
-import utils.parseutils.adapters.DepartmentAdapter;
-import utils.parseutils.adapters.OrganizationAdapter;
-import utils.parseutils.adapters.PersonAdapter;
-import utils.parseutils.DepartmentList;
-import utils.parseutils.OrganizationList;
-import utils.parseutils.PersonList;
+import utils.parse_utils.adapters.DepartmentAdapter;
+import utils.parse_utils.adapters.OrganizationAdapter;
+import utils.parse_utils.adapters.PersonAdapter;
+import utils.parse_utils.DepartmentList;
+import utils.parse_utils.OrganizationList;
+import utils.parse_utils.PersonList;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -20,7 +20,6 @@ import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.ArrayList;
 import java.util.List;
 
 /**

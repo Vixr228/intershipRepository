@@ -1,9 +1,9 @@
-package utils.parseutils.adapters;
+package utils.parse_utils.adapters;
 
 import entities.orgstuff.Department;
 import entities.orgstuff.Person;
-import utils.parseutils.DepartmentList;
-import utils.parseutils.PhoneNumbersList;
+import utils.parse_utils.DepartmentList;
+import utils.parse_utils.PhoneNumbersList;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -13,7 +13,6 @@ import javax.xml.bind.annotation.adapters.XmlAdapter;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 /**
  * DepartmentAdapter нужен для преобразования AdaptedDepartment в Department.

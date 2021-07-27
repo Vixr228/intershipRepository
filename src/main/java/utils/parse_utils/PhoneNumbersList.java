@@ -1,4 +1,4 @@
-package utils.parseutils;
+package utils.parse_utils;
 
 import entities.PhoneNumber;
 

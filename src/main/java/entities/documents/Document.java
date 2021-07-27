@@ -19,7 +19,7 @@ public abstract class Document implements Comparable<Document>{
     private Date registrationDate;
     private Person author;
 
-    private int prevRegistrationNumber = 0;
+    private transient int prevRegistrationNumber = 0;
 
     public Document(){}
     /**
@@ -35,7 +35,8 @@ public abstract class Document implements Comparable<Document>{
         this.id = id;
         this.name = name;
         this.text = text;
-        if(prevRegistrationNumber == documentCounter) try {
+        if(prevRegistrationNumber == documentCounter)
+            try {
             logger.error("Документ с номером " + registrationNumber + " уже существует");
             throw new DocumentExistException("file with this registration number is exist");
         } catch (DocumentExistException e) {

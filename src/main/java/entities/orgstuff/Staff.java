@@ -6,6 +6,11 @@ public abstract class Staff {
 
     private UUID id;
 
+    public Staff(){
+        this.id = UUID.randomUUID();
+    }
+
+
     public UUID getId() {
         return id;
     }

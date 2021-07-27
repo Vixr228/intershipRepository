@@ -1,9 +1,9 @@
-package utils.parseutils.adapters;
+package utils.parse_utils.adapters;
 
 import entities.orgstuff.Organization;
 import entities.orgstuff.Person;
-import utils.parseutils.OrganizationList;
-import utils.parseutils.PhoneNumbersList;
+import utils.parse_utils.OrganizationList;
+import utils.parse_utils.PhoneNumbersList;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -12,7 +12,6 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.adapters.XmlAdapter;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 /**
  * OrganizationAdapter нужен для преобразования AdaptedOrganization в Organization.

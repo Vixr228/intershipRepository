@@ -7,7 +7,7 @@ import entities.orgstuff.Person;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;
-import utils.parseutils.PhoneNumbersList;
+import utils.parse_utils.PhoneNumbersList;
 import javax.xml.bind.JAXBException;
 import java.util.ArrayList;
 import java.util.Date;
@@ -103,7 +103,7 @@ class XMLParserTest {
      * @throws Exception
      */
     @Test
-    void parseDepartmentsShouldeBeTrue() throws Exception {
+    void parseDepartmentsShouldBeTrue() throws Exception {
         List<Department> departmentList = xmlParser.parseDepartments("src/main/resources/xml/DepartmentList.xml");
 
         departmentList.forEach(department -> {
