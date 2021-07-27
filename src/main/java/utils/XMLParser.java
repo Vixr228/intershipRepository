@@ -33,17 +33,16 @@ import java.util.List;
 public class XMLParser {
     public static Logger logger = LogManager.getRootLogger();
     public List<Person> parsePersons(String path) throws Exception {
-        List<Person> persons = new ArrayList<>();
         JAXBContext context = JAXBContext.newInstance(PersonList.class);
         Unmarshaller unmarshaller = context.createUnmarshaller();
         PersonList personList = (PersonList) unmarshaller.unmarshal(new File(path));
 
         PersonAdapter personAdapter = new PersonAdapter(personList);
 
+        List<Person> p = personAdapter.adaptedPersonsToPersons();
         return personAdapter.adaptedPersonsToPersons();
     }
     public List<Department> parseDepartments(String path) throws JAXBException {
-        List<Department> departments = new ArrayList<>();
         JAXBContext context = JAXBContext.newInstance(DepartmentList.class);
         Unmarshaller unmarshaller = context.createUnmarshaller();
         DepartmentList departmentList = (DepartmentList) unmarshaller.unmarshal(new File(path));
@@ -53,7 +52,6 @@ public class XMLParser {
     }
 
     public List<Organization> parseOrganizations(String path) throws JAXBException {
-        List<Organization> organizations = new ArrayList<>();
         JAXBContext context = JAXBContext.newInstance(OrganizationList.class);
         Unmarshaller unmarshaller = context.createUnmarshaller();
         OrganizationList organizationList = (OrganizationList) unmarshaller.unmarshal(new File(path));

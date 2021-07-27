@@ -4,6 +4,7 @@ import utils.parseutils.PhoneNumbersList;
 
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
+import java.util.Objects;
 import java.util.UUID;
 
 @XmlRootElement(name = "organization")
@@ -17,6 +18,18 @@ public class Organization extends Staff{
     public Organization(){}
 
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Organization that = (Organization) o;
+        return Objects.equals(fullName, that.fullName) && Objects.equals(shortName, that.shortName) && Objects.equals(director, that.director) && Objects.equals(contactList, that.contactList);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, fullName, shortName, director, contactList);
+    }
 
     public Organization(String fullName, String shortName, Person director, PhoneNumbersList contactList){
         this.id = UUID.randomUUID();

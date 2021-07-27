@@ -5,6 +5,7 @@ import entities.PhoneNumber;
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Objects;
 import java.util.UUID;
 
 public class Person extends Staff implements Comparable<Person>, Serializable {
@@ -18,7 +19,19 @@ public class Person extends Staff implements Comparable<Person>, Serializable {
     private Date birthDate;
     private PhoneNumber phoneNumber;
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Person person = (Person) o;
+        return Objects.equals(name, person.name) && Objects.equals(surname, person.surname) && Objects.equals(patronymic, person.patronymic)
+                && Objects.equals(position, person.position) && Objects.equals(birthDate, person.birthDate) && Objects.equals(phoneNumber, person.phoneNumber);
+    }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, surname, patronymic, position, birthDate, phoneNumber);
+    }
 
     public Person(){}
     public Person(String name, String surname, String patronymic, String position, Date birthDate, PhoneNumber phoneNumber){
