@@ -64,17 +64,16 @@ public class Task extends Document {
         this.taskController = taskController;
     }
 
-    public StringBuffer print() {
-        StringBuffer str = new StringBuffer();
-        str.append("Task{" +
-                super.toString() +
-                "taskDate=" + taskDate +
-                ", taskDeadline=" + taskDeadline +
-                ", taskExecutor=" + taskExecutor +
-                ", controlSign='" + controlSign + '\'' +
-                ", taskController=" + taskController +
-                '}');
-        return str;
+    @Override
+    public String toString() {
+        StringBuffer sb = new StringBuffer("Task{" + super.toString());
+        sb.append("taskDate=" + taskDate);
+        sb.append(", taskDeadline=" + taskDeadline);
+        sb.append(", taskExecutor=" + taskExecutor);
+        sb.append(", controlSign=" + controlSign);
+        sb.append(", taskController=" + taskController);
+        sb.append('}');
+        return sb.toString();
     }
 
     @Override

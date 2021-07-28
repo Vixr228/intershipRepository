@@ -96,20 +96,18 @@ public abstract class Document implements Comparable<Document>{
         this.author = author;
     }
 
-    public StringBuffer print() {
-        StringBuffer str = new StringBuffer();
-         str.append("Document{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", text='" + text + '\'' +
-                ", registrationNumber=" + registrationNumber +
-                ", registrationDate=" + registrationDate +
-                ", author=" + author +
-                ", prevRegistrationNumber=" + prevRegistrationNumber +
-                '}');
-         return str;
+    @Override
+    public String toString() {
+        StringBuffer sb = new StringBuffer("Document{");
+        sb.append("id=" + id);
+        sb.append(", name=" + name);
+        sb.append(", text=" + text);
+        sb.append(", registrationNumber=" + registrationNumber);
+        sb.append(", registrationDate=" + registrationDate);
+        sb.append(", author=" + author);
+        sb.append('}');
+        return sb.toString();
     }
-
     public abstract String printDocument();
 
     @Override

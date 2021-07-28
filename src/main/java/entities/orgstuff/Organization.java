@@ -62,15 +62,16 @@ public class Organization extends Staff{
         this.contactList = numbersList;
     }
 
-    public StringBuffer print() {
+    @Override
+    public String toString() {
         StringBuffer str = new StringBuffer();
-        str.append("Organization{" +
-                "fullName='" + fullName + '\'' +
-                ", shortName='" + shortName + '\'' +
-                ", director=" + director +
-                ", contactNumbers=" + contactList.getNumberList() +
-                '}');
-        return str;
+        str.append("Organization{");
+        str.append("fullName=" + fullName);
+        str.append(", shortName=" + shortName);
+        str.append(", director=" + director);
+        str.append(", contactNumbers=" + contactList.getNumberList());
+        str.append('}');
+        return str.toString();
     }
 
     @Override

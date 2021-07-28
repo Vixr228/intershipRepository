@@ -11,15 +11,18 @@ import java.util.Objects;
 
 @XmlRootElement(name = "phoneNumber")
 public class PhoneNumber implements Serializable {
+
+    private static final String PHONE_VALIDATION_REGEX = "^(\\+7|8|7)[\\s\\-]?\\(?[0-9]{3}\\)?[\\s\\-]?[0-9]{3}[\\s\\-]?[0-9]{2}[\\s\\-]?[0-9]{2}";
+    private static final String CORRECT_PHONE_PATTERN = "+7(___)___-__-__";
     private String number;
 
     public PhoneNumber(){}
 
     public PhoneNumber(String number) {
-        if (number.matches("^(\\+7|8|7)[\\s\\-]?\\(?[0-9]{3}\\)?[\\s\\-]?[0-9]{3}[\\s\\-]?[0-9]{2}[\\s\\-]?[0-9]{2}")) {
+        if (number.matches(PHONE_VALIDATION_REGEX)) {
             this.number = number;
         }
-        else throw new IllegalArgumentException("Wrong number");
+        else throw new IllegalArgumentException("Неправильный номер. Пример правильного номера: " + CORRECT_PHONE_PATTERN);
     }
 
     public String getNumber() {
@@ -28,10 +31,10 @@ public class PhoneNumber implements Serializable {
 
     @XmlElement(name = "number")
     public void setNumber(String number) {
-        if (number.matches("^(\\+7|8|7)[\\s\\-]?\\(?[0-9]{3}\\)?[\\s\\-]?[0-9]{3}[\\s\\-]?[0-9]{2}[\\s\\-]?[0-9]{2}")) {
+        if (number.matches(PHONE_VALIDATION_REGEX)) {
             this.number = number;
         }
-        else throw new IllegalArgumentException("Wrong number");
+        else throw new IllegalArgumentException("Неправильный номер. Пример правильного номера: " + CORRECT_PHONE_PATTERN);
     }
 
     public StringBuffer print() {
@@ -40,6 +43,15 @@ public class PhoneNumber implements Serializable {
                 "number='" + number + '\'' +
                 '}');
          return str;
+    }
+
+    @Override
+    public String toString() {
+        StringBuffer sb = new StringBuffer("PhoneNumber{");
+        sb.append("number=" + number);
+        sb.append('}');
+
+        return sb.toString();
     }
 
     @Override

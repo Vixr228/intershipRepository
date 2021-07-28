@@ -26,4 +26,12 @@ public class OrganizationList {
     public void setOrganizationList(List<OrganizationAdapter.AdaptedOrganization> organizationList) {
         this.organizationList = organizationList;
     }
+
+    @Override
+    public String toString() {
+        StringBuffer str = new StringBuffer("OrganizationList{");
+        str.append("   organizationList=" + organizationList);
+        str.append(" }");
+        return str.toString();
+    }
 }

@@ -21,18 +21,6 @@ public class PhoneNumbersList {
     @XmlElement(name = "phoneNumber", type = PhoneNumber.class)
     private List<PhoneNumber> numberList = null;
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        PhoneNumbersList that = (PhoneNumbersList) o;
-        return Objects.equals(numberList, that.numberList);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(numberList);
-    }
 
     public PhoneNumbersList(){}
 
@@ -46,5 +34,26 @@ public class PhoneNumbersList {
 
     public void setNumberList(List<PhoneNumber> numberList) {
         this.numberList = numberList;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        PhoneNumbersList that = (PhoneNumbersList) o;
+        return Objects.equals(numberList, that.numberList);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(numberList);
+    }
+
+    @Override
+    public String toString() {
+        StringBuffer str = new StringBuffer("PhoneNumbersList{");
+        str.append("   numberList=" + numberList);
+        str.append(" }");
+        return str.toString();
     }
 }

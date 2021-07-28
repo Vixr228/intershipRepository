@@ -25,4 +25,11 @@ public class PersonList {
         this.personList = personList;
     }
 
+    @Override
+    public String toString() {
+        StringBuffer str = new StringBuffer("PersonList{");
+        str.append("   personList=" + personList);
+        str.append(" }");
+        return str.toString();
+    }
 }

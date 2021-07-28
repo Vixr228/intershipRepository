@@ -34,14 +34,14 @@ public class Main {
         List<Department> departmentList = xmlParser.parseDepartments(DEPARTMENTS_XML_PATH);
 
         personList.forEach(person -> {
-            logger.info(person.print());
+            logger.info(person.toString());
         });
 
         organizationList.forEach(organization -> {
-            logger.info(organization.print());
+            logger.info(organization.toString());
         });
         departmentList.forEach(department -> {
-            logger.info(department.print());
+            logger.info(department.toString());
         });
 
         List<String> texts = new ArrayList<String>(){{

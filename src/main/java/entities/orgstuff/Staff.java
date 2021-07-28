@@ -8,7 +8,7 @@ public abstract class Staff {
 
     private UUID id;
 
-    Randomizer rand = new Randomizer();
+    private transient Randomizer rand = new Randomizer();
 
     public Staff(){
         this.id = rand.randomId();

@@ -34,14 +34,13 @@ public class Outgoing extends Document {
     }
 
 
-    public StringBuffer print() {
-        StringBuffer str = new StringBuffer();
-        str.append("Outgoing{" +
-                super.toString() +
-                "recipient=" + recipient +
-                ", deliveryMethod='" + deliveryMethod + '\'' +
-                '}');
-        return str;
+    @Override
+    public String toString() {
+        StringBuffer sb = new StringBuffer("Outgoing{" + super.toString());
+        sb.append(", recipient=" + recipient );
+        sb.append(", deliveryMethod=" + deliveryMethod);
+        sb.append('}');
+        return sb.toString();
     }
 
     @Override

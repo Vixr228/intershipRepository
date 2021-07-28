@@ -7,7 +7,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Objects;
 
-public class Person extends Staff implements Comparable<Person>, Serializable {
+public class Person extends Staff implements Comparable<Person> {
 
     private String name;
     private String surname;
@@ -79,18 +79,18 @@ public class Person extends Staff implements Comparable<Person>, Serializable {
         return name + " " + surname + " " + patronymic;
     }
 
-    public StringBuffer print() {
-        StringBuffer str = new StringBuffer();
+    @Override
+    public String toString() {
         SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy");
-        str.append("Person{" +
-                "name='" + name + '\'' +
-                ", surname='" + surname + '\'' +
-                ", patronymic='" + patronymic + '\'' +
-                ", position='" + position + '\'' +
-                ", birthDate=" + format.format(getBirthDate()) +
-                ", phoneNumber=" + phoneNumber +
-                '}');
-        return str;
+        StringBuffer sb = new StringBuffer("Person{");
+        sb.append("  name=" + name);
+        sb.append(", surname=" + surname);
+        sb.append(", patronymic=" + patronymic);
+        sb.append(", position=" + position);
+        sb.append(", birthDate=" + format.format(birthDate));
+        sb.append(", phoneNumber=" + phoneNumber);
+        sb.append('}');
+        return sb.toString();
     }
 
     @Override

@@ -55,16 +55,15 @@ public class Incoming extends Document {
     }
 
 
-    public StringBuffer print() {
-        StringBuffer str = new StringBuffer();
-        str.append("Incoming{" +
-                super.toString() +
-                "sender=" + sender +
-                ", recipient=" + recipient +
-                ", outgoingNumber='" + outgoingNumber + '\'' +
-                ", outgoingRegistrationDate=" + outgoingRegistrationDate +
-                '}');
-        return str;
+    @Override
+    public String toString() {
+        StringBuffer sb = new StringBuffer("Incoming{" + super.toString());
+        sb.append(", sender=" + sender );
+        sb.append(", recipient=" + recipient);
+        sb.append(", outgoingNumber=" + outgoingNumber);
+        sb.append(", outgoingRegistrationDate=" + outgoingRegistrationDate);
+        sb.append('}');
+        return sb.toString();
     }
 
     @Override

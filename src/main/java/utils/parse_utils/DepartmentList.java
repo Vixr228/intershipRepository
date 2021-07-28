@@ -26,4 +26,12 @@ public class DepartmentList {
     public void setDepartmentList(List<DepartmentAdapter.AdaptedDepartment> departmentList) {
         this.departmentList = departmentList;
     }
+
+    @Override
+    public String toString() {
+        StringBuffer str = new StringBuffer("DepartmentList{");
+        str.append("   departmentList=" + departmentList);
+        str.append(" }");
+        return str.toString();
+    }
 }

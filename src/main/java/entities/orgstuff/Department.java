@@ -6,7 +6,7 @@ import java.io.Serializable;
 import java.util.Objects;
 import java.util.UUID;
 
-public class Department extends Staff implements Serializable{
+public class Department extends Staff{
 
     private String fullName;
     private String shortName;
@@ -58,15 +58,16 @@ public class Department extends Staff implements Serializable{
     }
 
 
-    public StringBuffer print() {
+    @Override
+    public String toString() {
         StringBuffer str = new StringBuffer();
-        str.append("Department{" +
-                "fullName='" + fullName + '\'' +
-                ", shortName='" + shortName + '\'' +
-                ", director=" + director +
-                ", contactList= " + getContactList().getNumberList() +
-                '}');
-        return str;
+        str.append("Department{");
+        str.append("fullName=" + fullName);
+        str.append(", shortName=" + shortName);
+        str.append(", director=" + director);
+        str.append(", contactNumbers=" + contactList.getNumberList());
+        str.append('}');
+        return str.toString();
     }
 
     @Override

@@ -7,6 +7,8 @@ import com.google.gson.GsonBuilder;
 
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.ByteBuffer;
+import java.nio.charset.StandardCharsets;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
@@ -27,7 +29,9 @@ public class JSONWriter {
 
         for(Map.Entry<Person, List<Document>> item : sorted.entrySet()){
             FileWriter file = new FileWriter("src/main/resources/json/" + item.getKey().getFullName() + ".json");
-            file.write(gson.toJson(item.getValue()));
+            String str = gson.toJson(item.getValue());
+            byte[] bytes = str.getBytes();
+            file.write(new String(bytes, StandardCharsets.UTF_8));
             file.close();
         }
     }
