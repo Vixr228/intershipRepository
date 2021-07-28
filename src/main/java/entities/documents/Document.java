@@ -9,7 +9,7 @@ import java.util.Objects;
 import java.util.UUID;
 
 public abstract class Document implements Comparable<Document>{
-    public static Logger logger = LogManager.getRootLogger();
+
     private static int documentCounter = 1;
 
     private UUID id;
@@ -35,18 +35,17 @@ public abstract class Document implements Comparable<Document>{
         this.id = id;
         this.name = name;
         this.text = text;
-        if(prevRegistrationNumber == documentCounter)
+        if(prevRegistrationNumber == documentCounter) {
             try {
-            logger.error("Документ с номером " + registrationNumber + " уже существует");
-            throw new DocumentExistException("file with this registration number is exist");
-        } catch (DocumentExistException e) {
-            e.printStackTrace();
+                throw new DocumentExistException("file with this registration number is exist", registrationNumber);
+            } catch (DocumentExistException e) {
+                e.printStackTrace();
+            }
         }
         prevRegistrationNumber = documentCounter;
         this.registrationNumber = documentCounter++;
         this.registrationDate = registrationDate;
         this.author = author;
-        logger.info("Создали новый документ с номером " + id);
     }
 
     public UUID getId() {
@@ -97,6 +96,22 @@ public abstract class Document implements Comparable<Document>{
         this.author = author;
     }
 
+    public StringBuffer print() {
+        StringBuffer str = new StringBuffer();
+         str.append("Document{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", text='" + text + '\'' +
+                ", registrationNumber=" + registrationNumber +
+                ", registrationDate=" + registrationDate +
+                ", author=" + author +
+                ", prevRegistrationNumber=" + prevRegistrationNumber +
+                '}');
+         return str;
+    }
+
+    public abstract String printDocument();
+
     @Override
     public int compareTo(Document secondDoc) {
         if(registrationNumber - secondDoc.registrationNumber != 0) return registrationNumber - secondDoc.registrationNumber;
@@ -116,20 +131,4 @@ public abstract class Document implements Comparable<Document>{
     public int hashCode() {
         return Objects.hash(id, name, text, registrationNumber, registrationDate, author, prevRegistrationNumber);
     }
-
-    public StringBuffer print() {
-        StringBuffer str = new StringBuffer();
-         str.append("Document{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", text='" + text + '\'' +
-                ", registrationNumber=" + registrationNumber +
-                ", registrationDate=" + registrationDate +
-                ", author=" + author +
-                ", prevRegistrationNumber=" + prevRegistrationNumber +
-                '}');
-         return str;
-    }
-
-    public abstract String printDocument();
 }

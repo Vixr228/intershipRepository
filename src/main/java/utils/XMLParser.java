@@ -35,18 +35,18 @@ public class XMLParser {
         JAXBContext context = JAXBContext.newInstance(PersonList.class);
         Unmarshaller unmarshaller = context.createUnmarshaller();
         PersonList personList = (PersonList) unmarshaller.unmarshal(new File(path));
-
+        logger.info("PersonList - " + personList + " успешно создан, данные записаны");
         PersonAdapter personAdapter = new PersonAdapter(personList);
 
-        List<Person> p = personAdapter.adaptedPersonsToPersons();
         return personAdapter.adaptedPersonsToPersons();
     }
     public List<Department> parseDepartments(String path) throws JAXBException {
         JAXBContext context = JAXBContext.newInstance(DepartmentList.class);
         Unmarshaller unmarshaller = context.createUnmarshaller();
         DepartmentList departmentList = (DepartmentList) unmarshaller.unmarshal(new File(path));
-
+        logger.info("DepartmentList - " + departmentList + " успешно создан, данные записаны");
         DepartmentAdapter departmentAdapter = new DepartmentAdapter(departmentList);
+
         return departmentAdapter.adaptedDepartmentsToDepartments();
     }
 
@@ -54,14 +54,13 @@ public class XMLParser {
         JAXBContext context = JAXBContext.newInstance(OrganizationList.class);
         Unmarshaller unmarshaller = context.createUnmarshaller();
         OrganizationList organizationList = (OrganizationList) unmarshaller.unmarshal(new File(path));
-
+        logger.info("OrganizationList - " + organizationList + " успешно создан, данные записаны");
         OrganizationAdapter organizationAdapter = new OrganizationAdapter(organizationList);
 
         return organizationAdapter.adaptedOrganizationsToOrganizations();
     }
 
-
-    public String readFile(String path, Charset encoding)
+    private String readFile(String path, Charset encoding)
             throws IOException
     {
         byte[] encoded = Files.readAllBytes(Paths.get(path));

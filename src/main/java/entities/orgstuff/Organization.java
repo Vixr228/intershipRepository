@@ -17,20 +17,6 @@ public class Organization extends Staff{
 
     public Organization(){}
 
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Organization that = (Organization) o;
-        return Objects.equals(fullName, that.fullName) && Objects.equals(shortName, that.shortName) && Objects.equals(director, that.director) && Objects.equals(contactList, that.contactList);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(getId(), fullName, shortName, director, contactList);
-    }
-
     public Organization(String fullName, String shortName, Person director, PhoneNumbersList contactList){
         super();
         this.fullName = fullName;
@@ -85,5 +71,18 @@ public class Organization extends Staff{
                 ", contactNumbers=" + contactList.getNumberList() +
                 '}');
         return str;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Organization that = (Organization) o;
+        return Objects.equals(fullName, that.fullName) && Objects.equals(shortName, that.shortName) && Objects.equals(director, that.director) && Objects.equals(contactList, that.contactList);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getId(), fullName, shortName, director, contactList);
     }
 }

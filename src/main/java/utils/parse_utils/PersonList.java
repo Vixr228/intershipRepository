@@ -25,5 +25,4 @@ public class PersonList {
         this.personList = personList;
     }
 
-
 }

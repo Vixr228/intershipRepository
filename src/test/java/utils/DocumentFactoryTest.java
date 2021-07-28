@@ -62,7 +62,4 @@ class DocumentFactoryTest {
         assertNotEquals(incoming.getClass(), outgoing.getClass());
     }
 
-//    Task createDocument(){
-//        Mockito.when(documentFactory.createDocument(Mockito.any())).thenReturn(new Task());
-//    }
 }

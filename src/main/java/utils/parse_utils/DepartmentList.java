@@ -26,6 +26,4 @@ public class DepartmentList {
     public void setDepartmentList(List<DepartmentAdapter.AdaptedDepartment> departmentList) {
         this.departmentList = departmentList;
     }
-
-
 }

@@ -8,6 +8,7 @@ import org.apache.logging.log4j.Logger;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.adapters.XmlAdapter;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
@@ -31,37 +32,14 @@ public class PersonAdapter extends XmlAdapter<PersonAdapter.AdaptedPerson, Perso
 
     public PersonAdapter(PersonList personList){
         this.personList = personList;
-
-    }
-    @Override
-    public Person unmarshal(AdaptedPerson v) throws Exception {
-        return new Person(v.getName(), v.getSurname(), v.getPatronymic(), v.getPosition(), v.getBirthDate(), v.getPhoneNumber());
     }
 
-    @Override
-    public AdaptedPerson marshal(Person v) throws Exception {
-        return new AdaptedPerson(v.getName(), v.getSurname(), v.getPatronymic(), v.getPosition(), v.getBirthDate(), v.getPhoneNumber());
-    }
-
-    public List<Person> adaptedPersonsToPersons(){
-        List<Person> persons = new ArrayList<>();
-        personList.getPersonList().forEach(p -> {
-            try {
-                persons.add(unmarshal(p));
-            } catch (Exception e) {
-                logger.error("При парсинге человека возникла ошибка.");
-                e.printStackTrace();
-            }
-        });
-        return persons;
-    }
 
     /**
      * Класс AdaptedPerson - заменяет сущность Person при парсинге в XML. Для того, чтобы не нагружать модель сущности Person.
      */
 
     @XmlRootElement(name = "person")
-    @XmlAccessorType(XmlAccessType.FIELD)
     @XmlJavaTypeAdapter(PersonAdapter.class)
     public static class AdaptedPerson {
         private String name;
@@ -86,6 +64,7 @@ public class PersonAdapter extends XmlAdapter<PersonAdapter.AdaptedPerson, Perso
             return name;
         }
 
+        @XmlElement(name = "name")
         public void setName(String name) {
             this.name = name;
         }
@@ -94,6 +73,7 @@ public class PersonAdapter extends XmlAdapter<PersonAdapter.AdaptedPerson, Perso
             return surname;
         }
 
+        @XmlElement(name = "surname")
         public void setSurname(String surname) {
             this.surname = surname;
         }
@@ -102,6 +82,7 @@ public class PersonAdapter extends XmlAdapter<PersonAdapter.AdaptedPerson, Perso
             return patronymic;
         }
 
+        @XmlElement(name = "patronymic")
         public void setPatronymic(String patronymic) {
             this.patronymic = patronymic;
         }
@@ -110,6 +91,7 @@ public class PersonAdapter extends XmlAdapter<PersonAdapter.AdaptedPerson, Perso
             return position;
         }
 
+        @XmlElement(name = "position")
         public void setPosition(String position) {
             this.position = position;
         }
@@ -118,6 +100,7 @@ public class PersonAdapter extends XmlAdapter<PersonAdapter.AdaptedPerson, Perso
             return birthDate;
         }
 
+        @XmlElement(name = "birthDate")
         public void setBirthDate(Date birthDate) {
             this.birthDate = birthDate;
         }
@@ -126,9 +109,34 @@ public class PersonAdapter extends XmlAdapter<PersonAdapter.AdaptedPerson, Perso
             return phoneNumber;
         }
 
+        @XmlElement(name = "phoneNumber")
         public void setPhoneNumber(PhoneNumber phoneNumber) {
             this.phoneNumber = phoneNumber;
         }
 
     }
+
+    @Override
+    public Person unmarshal(AdaptedPerson v) throws Exception {
+        return new Person(v.getName(), v.getSurname(), v.getPatronymic(), v.getPosition(), v.getBirthDate(), v.getPhoneNumber());
+    }
+
+    @Override
+    public AdaptedPerson marshal(Person v) throws Exception {
+        return new AdaptedPerson(v.getName(), v.getSurname(), v.getPatronymic(), v.getPosition(), v.getBirthDate(), v.getPhoneNumber());
+    }
+
+    public List<Person> adaptedPersonsToPersons(){
+        List<Person> persons = new ArrayList<>();
+        personList.getPersonList().forEach(p -> {
+            try {
+                persons.add(unmarshal(p));
+            } catch (Exception e) {
+                logger.error("При парсинге сотрудника возникла ошибка.");
+                e.printStackTrace();
+            }
+        });
+        return persons;
+    }
+
 }

@@ -13,7 +13,7 @@ public class Task extends Document {
     private String controlSign;
     private Person taskController;
 
-    Task(){}
+    public Task(){}
     public Task(UUID id, String name, String text, Date registrationDate, Person author, Date taskDate, Date taskDeadline,
                 Person taskExecutor, String controlSign, Person taskController){
         super(id, name, text, registrationDate, author);

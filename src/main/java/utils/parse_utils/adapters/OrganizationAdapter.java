@@ -33,29 +33,6 @@ public class OrganizationAdapter extends XmlAdapter<OrganizationAdapter.AdaptedO
 
     }
 
-    @Override
-    public Organization unmarshal(AdaptedOrganization v) throws Exception {
-        return new Organization(v.getFullName(), v.getShortName(), v.getDirector(), v.getContactList());
-    }
-
-    @Override
-    public AdaptedOrganization marshal(Organization v) throws Exception {
-        return new AdaptedOrganization(v.getFullName(), v.getShortName(), v.getDirector(), v.getContactList());
-    }
-
-    public List<Organization> adaptedOrganizationsToOrganizations(){
-        List<Organization> organizations = new ArrayList<>();
-        organizationList.getOrganizationList().forEach(o -> {
-            try {
-                organizations.add(unmarshal(o));
-            } catch (Exception e) {
-                logger.error("При парсинге организации возникла ошибка.");
-                e.printStackTrace();
-            }
-        });
-        return organizations;
-    }
-
     /**
      * Класс AdaptedOrganization - заменяет сущность Organization при парсинге в XML. Для того, чтобы не нагружать модель сущности Organization.
      */
@@ -111,6 +88,31 @@ public class OrganizationAdapter extends XmlAdapter<OrganizationAdapter.AdaptedO
         }
 
     }
+
+    @Override
+    public Organization unmarshal(AdaptedOrganization v) throws Exception {
+        return new Organization(v.getFullName(), v.getShortName(), v.getDirector(), v.getContactList());
+    }
+
+    @Override
+    public AdaptedOrganization marshal(Organization v) throws Exception {
+        return new AdaptedOrganization(v.getFullName(), v.getShortName(), v.getDirector(), v.getContactList());
+    }
+
+    public List<Organization> adaptedOrganizationsToOrganizations(){
+        List<Organization> organizations = new ArrayList<>();
+        organizationList.getOrganizationList().forEach(o -> {
+            try {
+                organizations.add(unmarshal(o));
+            } catch (Exception e) {
+                logger.error("При парсинге организации возникла ошибка.");
+                e.printStackTrace();
+            }
+        });
+        return organizations;
+    }
+
+
 }
 
 

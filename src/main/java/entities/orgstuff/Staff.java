@@ -1,15 +1,18 @@
 package entities.orgstuff;
 
+import utils.Randomizer;
+
 import java.util.UUID;
 
 public abstract class Staff {
 
     private UUID id;
 
-    public Staff(){
-        this.id = UUID.randomUUID();
-    }
+    Randomizer rand = new Randomizer();
 
+    public Staff(){
+        this.id = rand.randomId();
+    }
 
     public UUID getId() {
         return id;

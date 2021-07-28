@@ -13,19 +13,6 @@ public class Department extends Staff implements Serializable{
     private Person director;
     private PhoneNumbersList contactList;
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Department that = (Department) o;
-        return Objects.equals(fullName, that.fullName) && Objects.equals(shortName, that.shortName) && Objects.equals(director, that.director) && Objects.equals(contactList, that.contactList);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(getId(), fullName, shortName, director, contactList);
-    }
-
     public Department(){}
     public Department(String fullName, String shortName, Person director, PhoneNumbersList contactList){
         super();
@@ -80,5 +67,18 @@ public class Department extends Staff implements Serializable{
                 ", contactList= " + getContactList().getNumberList() +
                 '}');
         return str;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Department that = (Department) o;
+        return Objects.equals(fullName, that.fullName) && Objects.equals(shortName, that.shortName) && Objects.equals(director, that.director) && Objects.equals(contactList, that.contactList);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getId(), fullName, shortName, director, contactList);
     }
 }

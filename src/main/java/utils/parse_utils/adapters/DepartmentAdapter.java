@@ -30,29 +30,6 @@ public class DepartmentAdapter extends XmlAdapter<DepartmentAdapter.AdaptedDepar
         this.departments = departmentList;
     }
 
-    @Override
-    public Department unmarshal(AdaptedDepartment v) throws Exception {
-        return new Department(v.getFullName(), v.getShortName(), v.getDirector(), v.getContactList());
-    }
-
-    @Override
-    public AdaptedDepartment marshal(Department v) throws Exception {
-        return new AdaptedDepartment(v.getFullName(), v.getShortName(), v.getDirector(), v.getContactList());
-    }
-
-    public List<Department> adaptedDepartmentsToDepartments(){
-        List<Department> departmentList = new ArrayList<>();
-        departments.getDepartmentList().forEach(d -> {
-            try {
-                departmentList.add(unmarshal(d));
-            } catch (Exception e) {
-                logger.error("При парсинге департамента возникла ошибка.");
-                e.printStackTrace();
-            }
-        });
-        return departmentList;
-    }
-
     /**
      * Класс AdapterDepartment - заменяет сущность Department при парсинге в XML. Для того, чтобы не нагружать модель сущности Department.
      */
@@ -108,6 +85,31 @@ public class DepartmentAdapter extends XmlAdapter<DepartmentAdapter.AdaptedDepar
             this.contactList = numbersList;
         }
     }
+
+    @Override
+    public Department unmarshal(AdaptedDepartment v) throws Exception {
+        return new Department(v.getFullName(), v.getShortName(), v.getDirector(), v.getContactList());
+    }
+
+    @Override
+    public AdaptedDepartment marshal(Department v) throws Exception {
+        return new AdaptedDepartment(v.getFullName(), v.getShortName(), v.getDirector(), v.getContactList());
+    }
+
+    public List<Department> adaptedDepartmentsToDepartments(){
+        List<Department> departmentList = new ArrayList<>();
+        departments.getDepartmentList().forEach(d -> {
+            try {
+                departmentList.add(unmarshal(d));
+            } catch (Exception e) {
+                logger.error("При парсинге подразделения возникла ошибка.");
+                e.printStackTrace();
+            }
+        });
+        return departmentList;
+    }
+
+
 }
 
 

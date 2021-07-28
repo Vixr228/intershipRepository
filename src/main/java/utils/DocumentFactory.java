@@ -79,6 +79,4 @@ public class DocumentFactory{
         logger.info("Создали документ типа: " + document.getClass() + " c id " + document.getId());
         return document;
     }
-
-
 }

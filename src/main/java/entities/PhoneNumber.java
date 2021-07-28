@@ -15,6 +15,33 @@ public class PhoneNumber implements Serializable {
 
     public PhoneNumber(){}
 
+    public PhoneNumber(String number) {
+        if (number.matches("^(\\+7|8|7)[\\s\\-]?\\(?[0-9]{3}\\)?[\\s\\-]?[0-9]{3}[\\s\\-]?[0-9]{2}[\\s\\-]?[0-9]{2}")) {
+            this.number = number;
+        }
+        else throw new IllegalArgumentException("Wrong number");
+    }
+
+    public String getNumber() {
+        return number;
+    }
+
+    @XmlElement(name = "number")
+    public void setNumber(String number) {
+        if (number.matches("^(\\+7|8|7)[\\s\\-]?\\(?[0-9]{3}\\)?[\\s\\-]?[0-9]{3}[\\s\\-]?[0-9]{2}[\\s\\-]?[0-9]{2}")) {
+            this.number = number;
+        }
+        else throw new IllegalArgumentException("Wrong number");
+    }
+
+    public StringBuffer print() {
+        StringBuffer str = new StringBuffer();
+         str.append("PhoneNumber{" +
+                "number='" + number + '\'' +
+                '}');
+         return str;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -28,23 +55,4 @@ public class PhoneNumber implements Serializable {
         return Objects.hash(number);
     }
 
-    public PhoneNumber(String number){
-        this.number = number;
-    }
-    public String getNumber() {
-        return number;
-    }
-
-    @XmlElement(name = "number")
-    public void setNumber(String number) {
-        this.number = number;
-    }
-
-    public StringBuffer print() {
-        StringBuffer str = new StringBuffer();
-         str.append("PhoneNumber{" +
-                "number='" + number + '\'' +
-                '}');
-         return str;
-    }
 }
