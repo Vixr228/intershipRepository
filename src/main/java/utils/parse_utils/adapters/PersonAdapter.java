@@ -6,8 +6,6 @@ import utils.parse_utils.PersonList;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.adapters.XmlAdapter;
@@ -38,7 +36,6 @@ public class PersonAdapter extends XmlAdapter<PersonAdapter.AdaptedPerson, Perso
     /**
      * Класс AdaptedPerson - заменяет сущность Person при парсинге в XML. Для того, чтобы не нагружать модель сущности Person.
      */
-
     @XmlRootElement(name = "person")
     @XmlJavaTypeAdapter(PersonAdapter.class)
     public static class AdaptedPerson {

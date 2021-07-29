@@ -2,11 +2,12 @@ package entities.orgstuff;
 
 import entities.PhoneNumber;
 
-import java.io.Serializable;
+import javax.json.bind.annotation.JsonbPropertyOrder;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Objects;
 
+@JsonbPropertyOrder({"name", "surname", "patronymic", "position", "birthDate", "phoneNumber"})
 public class Person extends Staff implements Comparable<Person> {
 
     private String name;
