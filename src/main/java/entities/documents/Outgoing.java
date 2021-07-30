@@ -42,6 +42,25 @@ public class Outgoing extends Document {
         sb.append('}');
         return sb.toString();
     }
+    @Override
+    public StringBuffer convertDocumentToXml() {
+        StringBuffer str = new StringBuffer();
+        str.append(super.convertDocumentToXml());
+        str.append("\t\t<recipient>\n");
+        str.append("\t\t\t<id>" + recipient.getId() + "</id>\n");
+        str.append("\t\t\t<name>" + recipient.getName() + "</name>\n");
+        str.append("\t\t\t<surname>" + recipient.getSurname() + "</surname>\n");
+        str.append("\t\t\t<patronymic>" + recipient.getPatronymic() + "</patronymic>\n");
+        str.append("\t\t\t<position>" + recipient.getPosition() + "</position>\n");
+        str.append("\t\t\t<birthDate>" + recipient.getBirthDate() + "</birthDate>\n");
+        str.append("\t\t\t<phoneNumber>\n");
+        str.append("\t\t\t\t<number>" + recipient.getPhoneNumber() + "</number>\n");
+        str.append("\t\t\t</phoneNumber>\n");
+        str.append("\t\t</recipient>\n");
+        str.append("\t\t<deliveryMethod>" + deliveryMethod + "</deliveryMethod>\n");
+
+        return str;
+    }
 
     @Override
     public String printDocument() {
