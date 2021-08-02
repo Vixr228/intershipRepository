@@ -47,18 +47,9 @@ public class Outgoing extends Document {
         StringBuffer str = new StringBuffer();
         str.append(super.convertDocumentToXml());
         str.append("\t\t<recipient>\n");
-        str.append("\t\t\t<id>" + recipient.getId() + "</id>\n");
-        str.append("\t\t\t<name>" + recipient.getName() + "</name>\n");
-        str.append("\t\t\t<surname>" + recipient.getSurname() + "</surname>\n");
-        str.append("\t\t\t<patronymic>" + recipient.getPatronymic() + "</patronymic>\n");
-        str.append("\t\t\t<position>" + recipient.getPosition() + "</position>\n");
-        str.append("\t\t\t<birthDate>" + recipient.getBirthDate() + "</birthDate>\n");
-        str.append("\t\t\t<phoneNumber>\n");
-        str.append("\t\t\t\t<number>" + recipient.getPhoneNumber() + "</number>\n");
-        str.append("\t\t\t</phoneNumber>\n");
+        str.append(recipient.toXML());
         str.append("\t\t</recipient>\n");
         str.append("\t\t<deliveryMethod>" + deliveryMethod + "</deliveryMethod>\n");
-
         return str;
     }
 

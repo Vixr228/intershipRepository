@@ -1,19 +1,16 @@
 package repositories;
 
-import entities.PhoneNumber;
 import entities.documents.Document;
-import entities.documents.Task;
 import entities.orgstuff.Person;
 import utils.XMLParser;
 import web_controllers.Application;
-
-import javax.ws.rs.core.Response;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.nio.charset.StandardCharsets;
 import java.util.*;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
+
+/**
+ * Класс осуществляющий работу с Работниками
+ */
 
 public class PersonRepository {
     public static final String PERSONS_XML_PATH = "/Users/user/Desktop/intershiprepository/src/main/resources/xml/PersonList.xml";
@@ -31,6 +28,10 @@ public class PersonRepository {
         }
     }
 
+    /**
+     * Возвращает список всех работникок
+     * @return List<Person>
+     */
     public List<Person> getPersonList() {
         return personList;
     }
@@ -46,6 +47,11 @@ public class PersonRepository {
         return person;
     }
 
+    /**
+     * Возвращает списко документов, автором которых является работником с конкретным id
+     * @param id - сотрудник, список документов которого нам нужен
+     * @return List<Document> - список документов сотрудника
+     */
     public List<Document> getDocumentReportById(UUID id){
         List<Document> documentReport = null;
         Map<Person, List<Document>> map = Application.documents.stream().collect(Collectors.groupingBy(Document::getAuthor));
@@ -60,19 +66,21 @@ public class PersonRepository {
 
     }
 
-    public FileWriter documentToXmlFile(List<Document> documentList) throws IOException {
-        FileWriter file = new FileWriter("/Users/user/Desktop/intershiprepository/src/main/resources/file.xml");
+    /**
+     * Возвращает список документов в XML формате
+     * @param documentList - список документов
+     * @return StringBuffer - строка в XML формате
+     */
+    public StringBuffer documentToXmlFile(List<Document> documentList){
         StringBuffer str = new StringBuffer("");
-        file.write("<documentList>\n");
+              str.append("<documentList>\n");
         for(Document document : documentList){
             str.append("\t<document>\n");
             str.append(document.convertDocumentToXml());
             str.append("\t</document>\n");
-            file.write(String.valueOf(str));
         }
-        file.write("</documentList>\n");
-        file.close();
+        str.append("</documentList>\n");
 
-          return file;
+          return str;
     }
 }

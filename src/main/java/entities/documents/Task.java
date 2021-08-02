@@ -84,29 +84,12 @@ public class Task extends Document implements XMLConverter {
         str.append("\t\t<taskDate>" + taskDate + "</taskDate>\n");
         str.append("\t\t<taskDeadline>" + taskDeadline + "</taskDeadline>\n");
         str.append("\t\t<taskExecutor>\n");
-        str.append("\t\t\t<id>" + taskExecutor.getId() + "</id>\n");
-        str.append("\t\t\t<name>" + taskExecutor.getName() + "</name>\n");
-        str.append("\t\t\t<surname>" + taskExecutor.getSurname() + "</surname>\n");
-        str.append("\t\t\t<patronymic>" + taskExecutor.getPatronymic() + "</patronymic>\n");
-        str.append("\t\t\t<position>" + taskExecutor.getPosition() + "</position>\n");
-        str.append("\t\t\t<birthDate>" + taskExecutor.getBirthDate() + "</birthDate>\n");
-        str.append("\t\t\t<phoneNumber>\n");
-        str.append("\t\t\t\t<number>" + taskExecutor.getPhoneNumber() + "</number>\n");
-        str.append("\t\t\t</phoneNumber>\n");
+        str.append(taskExecutor.toXML());
         str.append("\t\t</taskExecutor>\n");
-        str.append("\t\t<controlSign>" + controlSign + "</controlSign>\n");
         str.append("\t\t<taskController>\n");
-        str.append("\t\t\t<id>" + taskController.getId() + "</id>\n");
-        str.append("\t\t\t<name>" + taskController.getName() + "</name>\n");
-        str.append("\t\t\t<surname>" + taskController.getSurname() + "</surname>\n");
-        str.append("\t\t\t<patronymic>" + taskController.getPatronymic() + "</patronymic>\n");
-        str.append("\t\t\t<position>" + taskController.getPosition() + "</position>\n");
-        str.append("\t\t\t<birthDate>" + taskController.getBirthDate() + "</birthDate>\n");
-        str.append("\t\t\t<phoneNumber>\n");
-        str.append("\t\t\t\t<number>" + taskController.getPhoneNumber() + "</number>\n");
-        str.append("\t\t\t</phoneNumber>\n");
+        str.append(taskController.toXML());
         str.append("\t\t</taskController>\n");
-
+        str.append("\t\t<controlSign>" + controlSign + "</controlSign>\n");
         return str;
     }
 

@@ -12,10 +12,16 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Класс, который делает инициализацию данных на странице первоначальной странице (http://localhost:8080/intershipProject-1.0-SNAPSHOT/)
+ */
+
 @ApplicationPath("/")
 public class Application extends javax.ws.rs.core.Application {
 
-
+    /**
+     * Заранее подгтовленные массивы с данными
+     */
     public static PersonRepository personRepository;
     public static List<Document> documents;
     List<String> texts = new ArrayList<String>(){{
@@ -56,8 +62,6 @@ public class Application extends javax.ws.rs.core.Application {
             int index = (int) (Math.random() * 3);
             documents.add(documentFactory.createDocument(classes.get(index)));
         }
-
-        personRepository.documentToXmlFile(documents);
     }
 
 }

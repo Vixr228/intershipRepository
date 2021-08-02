@@ -71,30 +71,13 @@ public class Incoming extends Document {
         StringBuffer str = new StringBuffer();
         str.append(super.convertDocumentToXml());
         str.append("\t\t<sender>\n");
-        str.append("\t\t\t<id>" + sender.getId() + "</id>\n");
-        str.append("\t\t\t<name>" + sender.getName() + "</name>\n");
-        str.append("\t\t\t<surname>" + sender.getSurname() + "</surname>\n");
-        str.append("\t\t\t<patronymic>" + sender.getPatronymic() + "</patronymic>\n");
-        str.append("\t\t\t<position>" + sender.getPosition() + "</position>\n");
-        str.append("\t\t\t<birthDate>" + sender.getBirthDate() + "</birthDate>\n");
-        str.append("\t\t\t<phoneNumber>\n");
-        str.append("\t\t\t\t<number>" + sender.getPhoneNumber() + "</number>\n");
-        str.append("\t\t\t</phoneNumber>\n");
+        str.append(sender.toXML());
         str.append("\t\t</sender>\n");
         str.append("\t\t<recipient>\n");
-        str.append("\t\t\t<id>" + recipient.getId() + "</id>\n");
-        str.append("\t\t\t<name>" + recipient.getName() + "</name>\n");
-        str.append("\t\t\t<surname>" + recipient.getSurname() + "</surname>\n");
-        str.append("\t\t\t<patronymic>" + recipient.getPatronymic() + "</patronymic>\n");
-        str.append("\t\t\t<position>" + recipient.getPosition() + "</position>\n");
-        str.append("\t\t\t<birthDate>" + recipient.getBirthDate() + "</birthDate>\n");
-        str.append("\t\t\t<phoneNumber>\n");
-        str.append("\t\t\t\t<number>" + recipient.getPhoneNumber() + "</number>\n");
-        str.append("\t\t\t</phoneNumber>\n");
+        str.append(recipient.toXML());
         str.append("\t\t</recipient>\n");
         str.append("\t\t<outgoingNumber>" + outgoingNumber + "</outgoingNumber>\n");
         str.append("\t\t<outgoingRegistrationDate>" + outgoingRegistrationDate + "</outgoingRegistrationDate>\n");
-
         return str;
     }
 

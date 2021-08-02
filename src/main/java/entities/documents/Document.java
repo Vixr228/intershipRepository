@@ -136,17 +136,8 @@ public abstract class Document implements Comparable<Document>, XMLConverter {
         str.append("\t\t<registrationNumber>" + registrationNumber + "</registrationNumber>\n");
         str.append("\t\t<registrationDate>" + registrationDate + "</registrationDate>\n");
         str.append("\t\t<author>\n");
-        str.append("\t\t\t<id>" + author.getId() + "</id>\n");
-        str.append("\t\t\t<name>" + author.getName() + "</name>\n");
-        str.append("\t\t\t<surname>" + author.getSurname() + "</surname>\n");
-        str.append("\t\t\t<patronymic>" + author.getPatronymic() + "</patronymic>\n");
-        str.append("\t\t\t<position>" + author.getPosition() + "</position>\n");
-        str.append("\t\t\t<birthDate>" + author.getBirthDate() + "</birthDate>\n");
-        str.append("\t\t\t<phoneNumber>\n");
-        str.append("\t\t\t\t<number>" + author.getPhoneNumber().getNumber() + "</number>\n");
-        str.append("\t\t\t</phoneNumber>\n");
+        str.append(author.toXML());
         str.append("\t\t</author>\n");
-
         return str;
     }
     @Override

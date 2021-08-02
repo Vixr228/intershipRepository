@@ -94,6 +94,21 @@ public class Person extends Staff implements Comparable<Person> {
         return sb.toString();
     }
 
+    public StringBuffer toXML(){
+        StringBuffer str = new StringBuffer();
+        str.append("\t\t\t<id>" + getId() + "</id>\n");
+        str.append("\t\t\t<name>" + getName() + "</name>\n");
+        str.append("\t\t\t<surname>" + getSurname() + "</surname>\n");
+        str.append("\t\t\t<patronymic>" + getPatronymic() + "</patronymic>\n");
+        str.append("\t\t\t<position>" + getPosition() + "</position>\n");
+        str.append("\t\t\t<birthDate>" + getBirthDate() + "</birthDate>\n");
+        str.append("\t\t\t<phoneNumber>\n");
+        str.append("\t\t\t\t<number>" + getPhoneNumber().getNumber() + "</number>\n");
+        str.append("\t\t\t</phoneNumber>\n");
+
+        return str;
+    }
+
     @Override
     public int compareTo(Person o) {
         return surname.compareTo(o.surname);
