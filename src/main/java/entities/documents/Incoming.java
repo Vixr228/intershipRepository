@@ -1,4 +1,6 @@
-package Entities;
+package entities.documents;
+
+import entities.orgstuff.Person;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -6,12 +8,12 @@ import java.util.UUID;
 
 public class Incoming extends Document {
 
-    private Employee sender;
-    private Employee recipient;
+    private Person sender;
+    private Person recipient;
     private String outgoingNumber;
     private Date outgoingRegistrationDate;
 
-    public Incoming(UUID id, String name, String text, Date registrationDate, Employee author, Employee sender, Employee recipient,
+    public Incoming(UUID id, String name, String text, Date registrationDate, Person author, Person sender, Person recipient,
                     String outgoingNumber, Date outgoingRegistrationDate){
         super(id, name, text, registrationDate, author);
         this.sender = sender;
@@ -20,19 +22,19 @@ public class Incoming extends Document {
         this.outgoingRegistrationDate = outgoingRegistrationDate;
     }
 
-    public Employee getSender() {
+    public Person getSender() {
         return sender;
     }
 
-    public void setSender(Employee sender) {
+    public void setSender(Person sender) {
         this.sender = sender;
     }
 
-    public Employee getRecipient() {
+    public Person getRecipient() {
         return recipient;
     }
 
-    public void setRecipient(Employee recipient) {
+    public void setRecipient(Person recipient) {
         this.recipient = recipient;
     }
 
@@ -55,13 +57,13 @@ public class Incoming extends Document {
 
     @Override
     public String toString() {
-        return "Incoming{" +
-                super.toString() +
-                "sender=" + sender +
-                ", recipient=" + recipient +
-                ", outgoingNumber='" + outgoingNumber + '\'' +
-                ", outgoingRegistrationDate=" + outgoingRegistrationDate +
-                '}';
+        StringBuffer sb = new StringBuffer("Incoming{" + super.toString());
+        sb.append(", sender=" + sender );
+        sb.append(", recipient=" + recipient);
+        sb.append(", outgoingNumber=" + outgoingNumber);
+        sb.append(", outgoingRegistrationDate=" + outgoingRegistrationDate);
+        sb.append('}');
+        return sb.toString();
     }
 
     @Override

@@ -1,37 +1,48 @@
-import Entities.Task;
-import Entities.Outgoing;
-import Entities.Incoming;
-import Entities.Employee;
-import Entities.Document;
-import Utils.DocumentExistException;
-import Utils.DocumentFactory;
+import entities.documents.Document;
+import entities.documents.Incoming;
+import entities.documents.Outgoing;
+import entities.documents.Task;
+import entities.orgstuff.Department;
+import entities.orgstuff.Organization;
+import entities.orgstuff.Person;
+import utils.DocumentFactory;
+import utils.JSONWriter;
+import utils.XMLParser;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import javax.print.Doc;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
-import java.util.stream.Collectors;
+
 
 public class Main {
+    public static final String PERSONS_XML_PATH = "src/main/resources/xml/PersonList.xml";
+    public static final String DEPARTMENTS_XML_PATH = "src/main/resources/xml/DepartmentList.xml";
+    public static final String ORGANIZATIONS_XML_PATH = "src/main/resources/xml/OrganizationList.xml";
     public static Logger logger = LogManager.getRootLogger();
-    public static void main(String[] args) throws DocumentExistException {
 
-        //Заранее подготовленные значения для заполнения документов
-        List<Employee> employees = new ArrayList<Employee>() {{
-            add(new Employee("Сергей", "Сергеев", "Сергеевич"));
-            add(new Employee("Петр", "Петров", "Петрович"));
-            add(new Employee("Антон", "Антонов", "Антонович"));
-            add(new Employee("Макс", "Максимов", "Максимович"));
-            add(new Employee("Андрей", "Архангелов", "Андреевич"));
-            add(new Employee("Сергей", "Бизонов", "Петрович"));
-            add(new Employee("Петр", "Потолков", "Андреевич"));
-            add(new Employee("Антон", "Ягушев", "Сергеевич"));
-            add(new Employee("Макс", "Хмыров", "Антонович"));
-            add(new Employee("Андрей", "Хлебный", "Андреевич"));
-        }};
+    public static void main(String[] args) throws Exception {
+
+        XMLParser xmlParser = new XMLParser();
+        JSONWriter jsonWriter = new JSONWriter();
+
+        /**
+         * Парсим XML файлы
+         */
+        List<Person> personList = xmlParser.parsePersons(PERSONS_XML_PATH);
+        List<Organization> organizationList = xmlParser.parseOrganizations(ORGANIZATIONS_XML_PATH);
+        List<Department> departmentList = xmlParser.parseDepartments(DEPARTMENTS_XML_PATH);
+
+        personList.forEach(person -> {
+            logger.info(person.toString());
+        });
+
+        organizationList.forEach(organization -> {
+            logger.info(organization.toString());
+        });
+        departmentList.forEach(department -> {
+            logger.info(department.toString());
+        });
 
         List<String> texts = new ArrayList<String>(){{
            add("Купить хлеб");
@@ -53,33 +64,33 @@ public class Main {
             add("Корабль");
         }};
 
-        //Заполняем документы
+        /**
+         * Заполняем документы
+         */
         List<Document> documents = new ArrayList<>();
-        DocumentFactory documentFactory = new DocumentFactory(texts, employees, deliveryMethods);
-        //Лист с классами для того, чтобы выбирать случайный класс и подставлять его во входные параметры
+        DocumentFactory documentFactory = new DocumentFactory(texts, personList, deliveryMethods);
+        /**
+         * Лист с классами для того, чтобы выбирать случайный класс и подставлять его во входные параметры
+         */
         List<Class<? extends Document>> classes = new ArrayList<Class<? extends Document>>(){{
             add(Task.class);
             add(Incoming.class);
             add(Outgoing.class);
         }};
-        for(int i = 0; i < 50; i++){
+        for(int i = 0; i < 10; i++){
             int index = (int) (Math.random() * 3);
             documents.add(documentFactory.createDocument(classes.get(index)));
         }
 
-        //Группируем документы по авторам и выводим
-        Map<Employee, List<Document>> map = documents.stream()
-                .collect(Collectors.groupingBy(Document::getAuthor));
-        TreeMap<Employee, List<Document>> sorted = new TreeMap<>(map);
+        /**
+         * Пишем отчет в JSON файлы
+         */
+        jsonWriter.writeDocumentsToJson(documents);
 
 
-        for(Map.Entry<Employee, List<Document>> item : sorted.entrySet()){
-            System.out.println(item.getKey().toString() + ":");
-            for(Document document : item.getValue()){
-                System.out.println("\t" + document.printDocument());
-            }
-            System.out.println();
-        }
+
+
+
 
     }
 }

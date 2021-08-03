@@ -1,7 +1,6 @@
-package Entities;
+package entities.documents;
 
-import Entities.Document;
-import Entities.Employee;
+import entities.orgstuff.Person;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -10,13 +9,13 @@ import java.util.UUID;
 public class Task extends Document {
     private Date taskDate;
     private Date taskDeadline;
-    private Employee taskExecutor;
+    private Person taskExecutor;
     private String controlSign;
-    private Employee taskController;
+    private Person taskController;
 
-    Task(){}
-    public Task(UUID id, String name, String text, Date registrationDate, Employee author, Date taskDate, Date taskDeadline,
-                Employee taskExecutor, String controlSign, Employee taskController){
+    public Task(){}
+    public Task(UUID id, String name, String text, Date registrationDate, Person author, Date taskDate, Date taskDeadline,
+                Person taskExecutor, String controlSign, Person taskController){
         super(id, name, text, registrationDate, author);
         this.taskDate = taskDate;
         this.taskDeadline = taskDeadline;
@@ -41,11 +40,11 @@ public class Task extends Document {
         this.taskDeadline = taskDeadline;
     }
 
-    public Employee getTaskExecutor() {
+    public Person getTaskExecutor() {
         return taskExecutor;
     }
 
-    public void setTaskExecutor(Employee taskExecutor) {
+    public void setTaskExecutor(Person taskExecutor) {
         this.taskExecutor = taskExecutor;
     }
 
@@ -57,24 +56,24 @@ public class Task extends Document {
         this.controlSign = controlSign;
     }
 
-    public Employee getTaskController() {
+    public Person getTaskController() {
         return taskController;
     }
 
-    public void setTaskController(Employee taskController) {
+    public void setTaskController(Person taskController) {
         this.taskController = taskController;
     }
 
     @Override
     public String toString() {
-        return  "Task{" +
-                super.toString() +
-                "taskDate=" + taskDate +
-                ", taskDeadline=" + taskDeadline +
-                ", taskExecutor=" + taskExecutor +
-                ", controlSign='" + controlSign + '\'' +
-                ", taskController=" + taskController +
-                '}';
+        StringBuffer sb = new StringBuffer("Task{" + super.toString());
+        sb.append("taskDate=" + taskDate);
+        sb.append(", taskDeadline=" + taskDeadline);
+        sb.append(", taskExecutor=" + taskExecutor);
+        sb.append(", controlSign=" + controlSign);
+        sb.append(", taskController=" + taskController);
+        sb.append('}');
+        return sb.toString();
     }
 
     @Override

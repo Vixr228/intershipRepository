@@ -1,5 +1,6 @@
-package Entities;
-import Utils.DocumentExistException;
+package entities.documents;
+import entities.orgstuff.Person;
+import utils.DocumentExistException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -8,7 +9,7 @@ import java.util.Objects;
 import java.util.UUID;
 
 public abstract class Document implements Comparable<Document>{
-    public static Logger logger = LogManager.getRootLogger();
+
     private static int documentCounter = 1;
 
     private UUID id;
@@ -16,26 +17,35 @@ public abstract class Document implements Comparable<Document>{
     private String text;
     private int registrationNumber;
     private Date registrationDate;
-    private Employee author;
+    private Person author;
 
-    private int prevRegistrationNumber = 0;
+    private transient int prevRegistrationNumber = 0;
 
     public Document(){}
-    public Document(UUID id, String name, String text, Date registrationDate, Employee author){
+    /**
+     * Конструктор - создание нового документа с заданными параметрами. С проверкой на уже существующий регистрационный номер.
+     * @param id - id документа
+     * @param name - Название документа
+     * @param text - текстовое описание
+     * @param registrationDate - дата создания
+     * @param author - автор документа
+     *
+     */
+    public Document(UUID id, String name, String text, Date registrationDate, Person author){
         this.id = id;
         this.name = name;
         this.text = text;
-        if(prevRegistrationNumber == documentCounter) try {
-            logger.error("Документ с номером " + registrationNumber + " уже существует (id: " + id + ")");
-            throw new DocumentExistException("file with this registration number is exist");
-        } catch (DocumentExistException e) {
-            e.printStackTrace();
+        if(prevRegistrationNumber == documentCounter) {
+            try {
+                throw new DocumentExistException("file with this registration number is exist", registrationNumber);
+            } catch (DocumentExistException e) {
+                e.printStackTrace();
+            }
         }
         prevRegistrationNumber = documentCounter;
         this.registrationNumber = documentCounter++;
         this.registrationDate = registrationDate;
         this.author = author;
-        logger.info("Создали новый документ с номером " + id);
     }
 
     public UUID getId() {
@@ -78,13 +88,27 @@ public abstract class Document implements Comparable<Document>{
         this.registrationDate = registrationDate;
     }
 
-    public Employee getAuthor() {
+    public Person getAuthor() {
         return author;
     }
 
-    public void setAuthor(Employee author) {
+    public void setAuthor(Person author) {
         this.author = author;
     }
+
+    @Override
+    public String toString() {
+        StringBuffer sb = new StringBuffer("Document{");
+        sb.append("id=" + id);
+        sb.append(", name=" + name);
+        sb.append(", text=" + text);
+        sb.append(", registrationNumber=" + registrationNumber);
+        sb.append(", registrationDate=" + registrationDate);
+        sb.append(", author=" + author);
+        sb.append('}');
+        return sb.toString();
+    }
+    public abstract String printDocument();
 
     @Override
     public int compareTo(Document secondDoc) {
@@ -105,19 +129,4 @@ public abstract class Document implements Comparable<Document>{
     public int hashCode() {
         return Objects.hash(id, name, text, registrationNumber, registrationDate, author, prevRegistrationNumber);
     }
-
-    @Override
-    public String toString() {
-        return "Document{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", text='" + text + '\'' +
-                ", registrationNumber=" + registrationNumber +
-                ", registrationDate=" + registrationDate +
-                ", author=" + author +
-                ", prevRegistrationNumber=" + prevRegistrationNumber +
-                '}';
-    }
-
-    public abstract String printDocument();
 }

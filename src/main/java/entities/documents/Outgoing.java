@@ -1,7 +1,6 @@
-package Entities;
+package entities.documents;
 
-import Entities.Document;
-import Entities.Employee;
+import entities.orgstuff.Person;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -9,20 +8,20 @@ import java.util.UUID;
 
 public class Outgoing extends Document {
 
-    private Employee recipient;
+    private Person recipient;
     private String deliveryMethod;
 
-    public Outgoing(UUID id, String name, String text, Date registrationDate, Employee author, Employee recipient, String deliveryMethod){
+    public Outgoing(UUID id, String name, String text, Date registrationDate, Person author, Person recipient, String deliveryMethod){
         super(id, name, text, registrationDate, author);
         this.recipient = recipient;
         this.deliveryMethod = deliveryMethod;
     }
 
-    public Employee getRecipient() {
+    public Person getRecipient() {
         return recipient;
     }
 
-    public void setRecipient(Employee recipient) {
+    public void setRecipient(Person recipient) {
         this.recipient = recipient;
     }
 
@@ -37,11 +36,11 @@ public class Outgoing extends Document {
 
     @Override
     public String toString() {
-        return "Outgoing{" +
-                super.toString() +
-                "recipient=" + recipient +
-                ", deliveryMethod='" + deliveryMethod + '\'' +
-                '}';
+        StringBuffer sb = new StringBuffer("Outgoing{" + super.toString());
+        sb.append(", recipient=" + recipient );
+        sb.append(", deliveryMethod=" + deliveryMethod);
+        sb.append('}');
+        return sb.toString();
     }
 
     @Override

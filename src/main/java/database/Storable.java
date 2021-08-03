@@ -1,4 +1,6 @@
-import Entities.Document;
+package database;
+
+import entities.documents.Document;
 
 public interface Storable {
 
