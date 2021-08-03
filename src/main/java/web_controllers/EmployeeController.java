@@ -9,7 +9,8 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import java.util.*;
+import java.util.List;
+import java.util.UUID;
 import java.util.logging.Logger;
 
 /**
@@ -47,7 +48,7 @@ public class EmployeeController {
     @Path("/employees/{id}")
     @Produces(MediaType.TEXT_XML)
     public Response getEmployeeReportById(@PathParam("id") UUID id){
-        List<Document> documentList = Application.personRepository.getDocumentReportById(id);
+        List<Document> documentList = Application.personRepository.getDocumentReportByAuthorId(id);
         if(documentList == null){
             log.severe("getEmployeeReportById - не найдены документы у работника с id: " + id);
             return Response.status(Response.Status.NOT_FOUND).type(MediaType.TEXT_PLAIN).entity(DOCUMENT_NOT_FOUND_ERROR).encoding("UTF-8").build();

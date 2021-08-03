@@ -52,7 +52,7 @@ public class PersonRepository {
      * @param id - сотрудник, список документов которого нам нужен
      * @return List<Document> - список документов сотрудника
      */
-    public List<Document> getDocumentReportById(UUID id){
+    public List<Document> getDocumentReportByAuthorId(UUID id){
         List<Document> documentReport = null;
         Map<Person, List<Document>> map = Application.documents.stream().collect(Collectors.groupingBy(Document::getAuthor));
         Person person = getPersonById(id);

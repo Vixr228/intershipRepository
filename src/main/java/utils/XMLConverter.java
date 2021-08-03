@@ -1,7 +1,8 @@
 package utils;
 
-import java.io.FileWriter;
-
+/**
+ * Интерфейс XMLConverter нужен для преобразования документов в XML строку
+ */
 public interface XMLConverter {
 
     StringBuffer convertDocumentToXml();
