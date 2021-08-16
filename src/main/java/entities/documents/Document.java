@@ -3,12 +3,14 @@ import entities.orgstuff.Person;
 import utils.DocumentExistException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import utils.XMLConverter;
 
+import java.io.FileWriter;
 import java.util.Date;
 import java.util.Objects;
 import java.util.UUID;
 
-public abstract class Document implements Comparable<Document>{
+public abstract class Document implements Comparable<Document>, XMLConverter {
 
     private static int documentCounter = 1;
 
@@ -125,6 +127,19 @@ public abstract class Document implements Comparable<Document>{
         return id == document.id && registrationNumber == document.registrationNumber && prevRegistrationNumber == document.prevRegistrationNumber && name.equals(document.name) && text.equals(document.text) && registrationDate.equals(document.registrationDate) && author.equals(document.author);
     }
 
+    @Override
+    public StringBuffer convertDocumentToXml(){
+        StringBuffer str = new StringBuffer();
+        str.append("\t\t<id>" + id + "</id>\n");
+        str.append("\t\t<name>" + name + "</name>\n");
+        str.append("\t\t<text>" + text + "</text>\n");
+        str.append("\t\t<registrationNumber>" + registrationNumber + "</registrationNumber>\n");
+        str.append("\t\t<registrationDate>" + registrationDate + "</registrationDate>\n");
+        str.append("\t\t<author>\n");
+        str.append(author.toXML());
+        str.append("\t\t</author>\n");
+        return str;
+    }
     @Override
     public int hashCode() {
         return Objects.hash(id, name, text, registrationNumber, registrationDate, author, prevRegistrationNumber);

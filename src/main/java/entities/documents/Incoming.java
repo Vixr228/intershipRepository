@@ -67,6 +67,22 @@ public class Incoming extends Document {
     }
 
     @Override
+    public StringBuffer convertDocumentToXml() {
+        StringBuffer str = new StringBuffer();
+        str.append(super.convertDocumentToXml());
+        str.append("\t\t<sender>\n");
+        str.append(sender.toXML());
+        str.append("\t\t</sender>\n");
+        str.append("\t\t<recipient>\n");
+        str.append(recipient.toXML());
+        str.append("\t\t</recipient>\n");
+        str.append("\t\t<outgoingNumber>" + outgoingNumber + "</outgoingNumber>\n");
+        str.append("\t\t<outgoingRegistrationDate>" + outgoingRegistrationDate + "</outgoingRegistrationDate>\n");
+        return str;
+    }
+
+
+    @Override
     public String printDocument() {
         SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy");
         return "Входящий №" + getRegistrationNumber() + " от " + format.format(getRegistrationDate()) + ". " + getName();

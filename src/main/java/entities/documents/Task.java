@@ -1,6 +1,7 @@
 package entities.documents;
 
 import entities.orgstuff.Person;
+import utils.XMLConverter;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -74,6 +75,22 @@ public class Task extends Document {
         sb.append(", taskController=" + taskController);
         sb.append('}');
         return sb.toString();
+    }
+
+    @Override
+    public StringBuffer convertDocumentToXml() {
+        StringBuffer str = new StringBuffer();
+        str.append(super.convertDocumentToXml());
+        str.append("\t\t<taskDate>" + taskDate + "</taskDate>\n");
+        str.append("\t\t<taskDeadline>" + taskDeadline + "</taskDeadline>\n");
+        str.append("\t\t<taskExecutor>\n");
+        str.append(taskExecutor.toXML());
+        str.append("\t\t</taskExecutor>\n");
+        str.append("\t\t<taskController>\n");
+        str.append(taskController.toXML());
+        str.append("\t\t</taskController>\n");
+        str.append("\t\t<controlSign>" + controlSign + "</controlSign>\n");
+        return str;
     }
 
     @Override

@@ -42,6 +42,16 @@ public class Outgoing extends Document {
         sb.append('}');
         return sb.toString();
     }
+    @Override
+    public StringBuffer convertDocumentToXml() {
+        StringBuffer str = new StringBuffer();
+        str.append(super.convertDocumentToXml());
+        str.append("\t\t<recipient>\n");
+        str.append(recipient.toXML());
+        str.append("\t\t</recipient>\n");
+        str.append("\t\t<deliveryMethod>" + deliveryMethod + "</deliveryMethod>\n");
+        return str;
+    }
 
     @Override
     public String printDocument() {

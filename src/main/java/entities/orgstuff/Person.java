@@ -2,11 +2,12 @@ package entities.orgstuff;
 
 import entities.PhoneNumber;
 
-import java.io.Serializable;
+import javax.json.bind.annotation.JsonbPropertyOrder;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Objects;
 
+@JsonbPropertyOrder({"name", "surname", "patronymic", "position", "birthDate", "phoneNumber"})
 public class Person extends Staff implements Comparable<Person> {
 
     private String name;
@@ -91,6 +92,21 @@ public class Person extends Staff implements Comparable<Person> {
         sb.append(", phoneNumber=" + phoneNumber);
         sb.append('}');
         return sb.toString();
+    }
+
+    public StringBuffer toXML(){
+        StringBuffer str = new StringBuffer();
+        str.append("\t\t\t<id>" + getId() + "</id>\n");
+        str.append("\t\t\t<name>" + getName() + "</name>\n");
+        str.append("\t\t\t<surname>" + getSurname() + "</surname>\n");
+        str.append("\t\t\t<patronymic>" + getPatronymic() + "</patronymic>\n");
+        str.append("\t\t\t<position>" + getPosition() + "</position>\n");
+        str.append("\t\t\t<birthDate>" + getBirthDate() + "</birthDate>\n");
+        str.append("\t\t\t<phoneNumber>\n");
+        str.append("\t\t\t\t<number>" + getPhoneNumber().getNumber() + "</number>\n");
+        str.append("\t\t\t</phoneNumber>\n");
+
+        return str;
     }
 
     @Override
